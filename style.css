@@ -16,8 +16,9 @@ button,input{font:inherit}
 .icon-btn,.bag{background:none;border:0;color:#eee;padding:0;cursor:pointer;font-size:20px;line-height:1}
 .bag{font-size:18px}.bag b{font-size:9px;font-weight:400;margin-left:3px}
 .shipping{font-size:8px;letter-spacing:.16em}
-.wordmark{display:flex;align-items:center;gap:10px;font-size:16px;letter-spacing:.55em;margin-left:.5em}
-.wordmark img{width:27px;height:27px;object-fit:contain;filter:brightness(0) invert(1)}
+.wordmark{display:flex;align-items:center;gap:12px;font-size:16px;letter-spacing:.42em;margin-left:.5em;color:#f7f5f0;line-height:1}
+.aden-mark{width:30px;height:30px;display:block;flex:0 0 auto;color:#f7f5f0}
+.wordmark span{display:block;padding-left:.42em}
 .menu-toggle{display:none;background:none;border:0;color:white;font-size:20px}
 
 .hero{height:100vh;min-height:650px;background:#161616;color:#fff}
@@ -71,8 +72,9 @@ button,input{font:inherit}
 .journal-grid img:hover{opacity:.82}
 
 .newsletter{background:#0b0b0b;color:#eee;padding:32px 3.5vw;display:grid;grid-template-columns:1fr 1.25fr 1.8fr;align-items:center;gap:35px}
-.newsletter-brand{display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.45em}
-.newsletter-brand img{width:28px;height:28px;filter:brightness(0) invert(1)}
+.newsletter-brand{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.34em;color:#eee;line-height:1}
+.newsletter-brand .aden-mark{width:28px;height:28px}
+.newsletter-brand span{padding-left:.34em}
 .newsletter-copy p{font-size:8px;letter-spacing:.22em;margin:0 0 8px}.newsletter-copy span{font-size:8px;color:#999;letter-spacing:.04em}
 .newsletter form{display:flex;border:1px solid #555;height:39px}.newsletter input{flex:1;min-width:0;background:transparent;border:0;padding:0 13px;color:white;outline:none;font-size:9px}.newsletter button{background:transparent;color:white;border:0;border-left:1px solid #555;padding:0 18px;font-size:8px;letter-spacing:.12em;cursor:pointer}.newsletter button span{font-size:13px;margin-left:7px}
 
@@ -91,7 +93,7 @@ footer{background:#0b0b0b;color:#888;padding:17px 3.5vw 23px;display:flex;align-
  .newsletter{grid-template-columns:1fr 1fr}.newsletter form{grid-column:1/-1}
 }
 @media(max-width:650px){
- .site-header{height:58px}.nav-left,.nav-right{display:none}.wordmark{font-size:14px}.menu-toggle{display:block;position:absolute;right:18px}
+ .site-header{height:58px}.nav-left,.nav-right{display:none}.wordmark{font-size:14px;gap:9px;letter-spacing:.35em}.wordmark .aden-mark{width:27px;height:27px}.wordmark span{padding-left:.35em}.menu-toggle{display:block;position:absolute;right:18px}
  .hero{min-height:720px}.hero-copy{top:49%;left:7vw}.hero h1{font-size:58px}.hero-side{display:none}.hero-count{right:7vw}
  .section{padding:48px 5vw}.section-head h2{font-size:25px}
  .product-grid{grid-template-columns:repeat(2,1fr);gap:28px 12px}.product-image{aspect-ratio:1/.95}.product-name{font-size:8px}
@@ -101,3 +103,5 @@ footer{background:#0b0b0b;color:#888;padding:17px 3.5vw 23px;display:flex;align-
  footer{padding:20px 5vw;flex-wrap:wrap;gap:20px}.copyright{width:100%;justify-content:space-between}
  .mobile-menu{position:fixed;inset:0;background:#0b0b0b;color:white;z-index:70;display:none;flex-direction:column;justify-content:center;padding:12vw;gap:25px}.mobile-menu.open{display:flex}.mobile-menu a{font-family:"Playfair Display",serif;font-size:42px}
 }
+
+.wordmark:focus-visible{outline:1px solid rgba(255,255,255,.65);outline-offset:6px}
