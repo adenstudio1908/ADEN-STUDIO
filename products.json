@@ -1,0 +1,364 @@
+{
+  "brand": "ADEN STUDIO",
+  "domain": "adenstudio.asia",
+  "looks": [
+    {
+      "id": "look-01",
+      "name": "ADEN LOOK 01",
+      "images": [
+        "assets/images/look-01/01.webp",
+        "assets/images/look-01/02.webp",
+        "assets/images/look-01/03.webp",
+        "assets/images/look-01/04.webp"
+      ]
+    },
+    {
+      "id": "look-02",
+      "name": "ADEN LOOK 02",
+      "images": [
+        "assets/images/look-02/01.webp",
+        "assets/images/look-02/02.webp",
+        "assets/images/look-02/03.webp"
+      ]
+    },
+    {
+      "id": "look-03",
+      "name": "ADEN LOOK 03",
+      "images": [
+        "assets/images/look-03/01.webp",
+        "assets/images/look-03/02.webp",
+        "assets/images/look-03/03.webp",
+        "assets/images/look-03/04.webp"
+      ]
+    },
+    {
+      "id": "look-04",
+      "name": "ADEN LOOK 04",
+      "images": [
+        "assets/images/look-04/01.webp",
+        "assets/images/look-04/02.webp"
+      ]
+    },
+    {
+      "id": "look-05",
+      "name": "ADEN LOOK 05",
+      "images": [
+        "assets/images/look-05/01.webp",
+        "assets/images/look-05/02.webp"
+      ]
+    },
+    {
+      "id": "look-06",
+      "name": "ADEN LOOK 06",
+      "images": [
+        "assets/images/look-06/01.webp",
+        "assets/images/look-06/02.webp",
+        "assets/images/look-06/03.webp",
+        "assets/images/look-06/04.webp"
+      ]
+    },
+    {
+      "id": "look-07",
+      "name": "ADEN LOOK 07",
+      "images": [
+        "assets/images/look-07/01.webp",
+        "assets/images/look-07/02.webp",
+        "assets/images/look-07/03.webp",
+        "assets/images/look-07/04.webp"
+      ]
+    },
+    {
+      "id": "look-08",
+      "name": "ADEN LOOK 08",
+      "images": [
+        "assets/images/look-08/01.webp",
+        "assets/images/look-08/02.webp",
+        "assets/images/look-08/03.webp",
+        "assets/images/look-08/04.webp"
+      ]
+    },
+    {
+      "id": "look-09",
+      "name": "ADEN LOOK 09",
+      "images": [
+        "assets/images/look-09/01.webp",
+        "assets/images/look-09/02.webp",
+        "assets/images/look-09/03.webp",
+        "assets/images/look-09/04.webp"
+      ]
+    },
+    {
+      "id": "look-10",
+      "name": "ADEN LOOK 10",
+      "images": [
+        "assets/images/look-10/01.webp",
+        "assets/images/look-10/02.webp",
+        "assets/images/look-10/03.webp",
+        "assets/images/look-10/04.webp"
+      ]
+    },
+    {
+      "id": "look-11",
+      "name": "ADEN LOOK 11",
+      "images": [
+        "assets/images/look-11/01.webp",
+        "assets/images/look-11/02.webp",
+        "assets/images/look-11/03.webp"
+      ]
+    },
+    {
+      "id": "look-12",
+      "name": "ADEN LOOK 12",
+      "images": [
+        "assets/images/look-12/01.webp",
+        "assets/images/look-12/02.webp"
+      ]
+    },
+    {
+      "id": "look-13",
+      "name": "ADEN LOOK 13",
+      "images": [
+        "assets/images/look-13/01.webp",
+        "assets/images/look-13/02.webp",
+        "assets/images/look-13/03.webp",
+        "assets/images/look-13/04.webp"
+      ]
+    },
+    {
+      "id": "look-14",
+      "name": "ADEN LOOK 14",
+      "images": [
+        "assets/images/look-14/01.webp",
+        "assets/images/look-14/02.webp",
+        "assets/images/look-14/03.webp",
+        "assets/images/look-14/04.webp"
+      ]
+    },
+    {
+      "id": "look-15",
+      "name": "ADEN LOOK 15",
+      "images": [
+        "assets/images/look-15/01.webp",
+        "assets/images/look-15/02.webp",
+        "assets/images/look-15/03.webp",
+        "assets/images/look-15/04.webp"
+      ]
+    },
+    {
+      "id": "look-16",
+      "name": "ADEN LOOK 16",
+      "images": [
+        "assets/images/look-16/01.webp",
+        "assets/images/look-16/02.webp",
+        "assets/images/look-16/03.webp",
+        "assets/images/look-16/04.webp"
+      ]
+    },
+    {
+      "id": "look-17",
+      "name": "ADEN LOOK 17",
+      "images": [
+        "assets/images/look-17/01.webp",
+        "assets/images/look-17/02.webp",
+        "assets/images/look-17/03.webp",
+        "assets/images/look-17/04.webp"
+      ]
+    },
+    {
+      "id": "look-18",
+      "name": "ADEN LOOK 18",
+      "images": [
+        "assets/images/look-18/01.webp",
+        "assets/images/look-18/02.webp",
+        "assets/images/look-18/03.webp"
+      ]
+    },
+    {
+      "id": "look-19",
+      "name": "ADEN LOOK 19",
+      "images": [
+        "assets/images/look-19/01.webp",
+        "assets/images/look-19/02.webp",
+        "assets/images/look-19/03.webp",
+        "assets/images/look-19/04.webp"
+      ]
+    },
+    {
+      "id": "look-20",
+      "name": "ADEN LOOK 20",
+      "images": [
+        "assets/images/look-20/01.webp"
+      ]
+    },
+    {
+      "id": "look-21",
+      "name": "ADEN LOOK 21",
+      "images": [
+        "assets/images/look-21/01.webp"
+      ]
+    },
+    {
+      "id": "look-22",
+      "name": "ADEN LOOK 22",
+      "images": [
+        "assets/images/look-22/01.webp"
+      ]
+    },
+    {
+      "id": "look-23",
+      "name": "ADEN LOOK 23",
+      "images": [
+        "assets/images/look-23/01.webp",
+        "assets/images/look-23/02.webp"
+      ]
+    },
+    {
+      "id": "look-24",
+      "name": "ADEN LOOK 24",
+      "images": [
+        "assets/images/look-24/01.webp",
+        "assets/images/look-24/02.webp",
+        "assets/images/look-24/03.webp"
+      ]
+    },
+    {
+      "id": "look-25",
+      "name": "ADEN LOOK 25",
+      "images": [
+        "assets/images/look-25/01.webp"
+      ]
+    },
+    {
+      "id": "look-26",
+      "name": "ADEN LOOK 26",
+      "images": [
+        "assets/images/look-26/01.webp"
+      ]
+    },
+    {
+      "id": "look-27",
+      "name": "ADEN LOOK 27",
+      "images": [
+        "assets/images/look-27/01.webp"
+      ]
+    }
+  ],
+  "editorial": [
+    "assets/images/editorial/editorial-001.webp",
+    "assets/images/editorial/editorial-002.webp",
+    "assets/images/editorial/editorial-003.webp",
+    "assets/images/editorial/editorial-004.webp",
+    "assets/images/editorial/editorial-005.webp",
+    "assets/images/editorial/editorial-006.webp",
+    "assets/images/editorial/editorial-007.webp",
+    "assets/images/editorial/editorial-008.webp",
+    "assets/images/editorial/editorial-009.webp",
+    "assets/images/editorial/editorial-010.webp",
+    "assets/images/editorial/editorial-011.webp",
+    "assets/images/editorial/editorial-012.webp",
+    "assets/images/editorial/editorial-013.webp",
+    "assets/images/editorial/editorial-014.webp",
+    "assets/images/editorial/editorial-015.webp",
+    "assets/images/editorial/editorial-016.webp",
+    "assets/images/editorial/editorial-017.webp",
+    "assets/images/editorial/editorial-018.webp",
+    "assets/images/editorial/editorial-019.webp",
+    "assets/images/editorial/editorial-020.webp",
+    "assets/images/editorial/editorial-021.webp",
+    "assets/images/editorial/editorial-022.webp",
+    "assets/images/editorial/editorial-023.webp",
+    "assets/images/editorial/editorial-024.webp",
+    "assets/images/editorial/editorial-025.webp",
+    "assets/images/editorial/editorial-026.webp",
+    "assets/images/editorial/editorial-027.webp",
+    "assets/images/editorial/editorial-028.webp",
+    "assets/images/editorial/editorial-029.webp",
+    "assets/images/editorial/editorial-030.webp",
+    "assets/images/editorial/editorial-031.webp",
+    "assets/images/editorial/editorial-032.webp",
+    "assets/images/editorial/editorial-033.webp",
+    "assets/images/editorial/editorial-034.webp",
+    "assets/images/editorial/editorial-035.webp",
+    "assets/images/editorial/editorial-036.webp",
+    "assets/images/editorial/editorial-037.webp",
+    "assets/images/editorial/editorial-038.webp",
+    "assets/images/editorial/editorial-039.webp",
+    "assets/images/editorial/editorial-040.webp",
+    "assets/images/editorial/editorial-041.webp",
+    "assets/images/editorial/editorial-042.webp",
+    "assets/images/editorial/editorial-043.webp",
+    "assets/images/editorial/editorial-044.webp",
+    "assets/images/editorial/editorial-045.webp",
+    "assets/images/editorial/editorial-046.webp",
+    "assets/images/editorial/editorial-047.webp",
+    "assets/images/editorial/editorial-048.webp",
+    "assets/images/editorial/editorial-049.webp",
+    "assets/images/editorial/editorial-050.webp",
+    "assets/images/editorial/editorial-051.webp",
+    "assets/images/editorial/editorial-052.webp",
+    "assets/images/editorial/editorial-053.webp",
+    "assets/images/editorial/editorial-054.webp",
+    "assets/images/editorial/editorial-055.webp",
+    "assets/images/editorial/editorial-056.webp",
+    "assets/images/editorial/editorial-057.webp",
+    "assets/images/editorial/editorial-058.webp",
+    "assets/images/editorial/editorial-059.webp",
+    "assets/images/editorial/editorial-060.webp",
+    "assets/images/editorial/editorial-061.webp",
+    "assets/images/editorial/editorial-062.webp",
+    "assets/images/editorial/editorial-063.webp",
+    "assets/images/editorial/editorial-064.webp",
+    "assets/images/editorial/editorial-065.webp",
+    "assets/images/editorial/editorial-066.webp",
+    "assets/images/editorial/editorial-067.webp",
+    "assets/images/editorial/editorial-068.webp",
+    "assets/images/editorial/editorial-069.webp",
+    "assets/images/editorial/editorial-070.webp",
+    "assets/images/editorial/editorial-071.webp",
+    "assets/images/editorial/editorial-072.webp",
+    "assets/images/editorial/editorial-073.webp",
+    "assets/images/editorial/editorial-074.webp",
+    "assets/images/editorial/editorial-075.webp",
+    "assets/images/editorial/editorial-076.webp",
+    "assets/images/editorial/editorial-077.webp",
+    "assets/images/editorial/editorial-078.webp",
+    "assets/images/editorial/editorial-079.webp",
+    "assets/images/editorial/editorial-080.webp",
+    "assets/images/editorial/editorial-081.webp",
+    "assets/images/editorial/editorial-082.webp",
+    "assets/images/editorial/editorial-083.webp",
+    "assets/images/editorial/editorial-084.webp",
+    "assets/images/editorial/editorial-085.webp",
+    "assets/images/editorial/editorial-086.webp",
+    "assets/images/editorial/editorial-087.webp",
+    "assets/images/editorial/editorial-088.webp",
+    "assets/images/editorial/editorial-089.webp",
+    "assets/images/editorial/editorial-090.webp",
+    "assets/images/editorial/editorial-091.webp",
+    "assets/images/editorial/editorial-092.webp",
+    "assets/images/editorial/editorial-093.webp",
+    "assets/images/editorial/editorial-094.webp",
+    "assets/images/editorial/editorial-095.webp",
+    "assets/images/editorial/editorial-096.webp",
+    "assets/images/editorial/editorial-097.webp",
+    "assets/images/editorial/editorial-098.webp",
+    "assets/images/editorial/editorial-099.webp",
+    "assets/images/editorial/editorial-100.webp",
+    "assets/images/editorial/editorial-101.webp",
+    "assets/images/editorial/editorial-102.webp",
+    "assets/images/editorial/editorial-103.webp",
+    "assets/images/editorial/editorial-104.webp",
+    "assets/images/editorial/editorial-105.webp",
+    "assets/images/editorial/editorial-106.webp",
+    "assets/images/editorial/editorial-107.webp",
+    "assets/images/editorial/editorial-108.webp",
+    "assets/images/editorial/editorial-109.webp",
+    "assets/images/editorial/editorial-110.webp",
+    "assets/images/editorial/editorial-111.webp"
+  ],
+  "videos": [
+    "assets/videos/copy_70F127D6-ED2E-461C-AD89-E03B04AAF9AE.MOV",
+    "assets/videos/copy_ADA77E49-A0C4-4B18-AE9A-32F9800DE5A7.MOV",
+    "assets/videos/v14044g50000daeepmnog65lspn2kk90.MP4"
+  ]
+}
