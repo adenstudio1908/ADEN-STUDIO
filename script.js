@@ -12,6 +12,17 @@
   } catch (error) {
     console.warn("ADEN products.json could not be loaded:", error);
   }
+
+  try {
+    const response = await fetch("products.json");
+    const data = await response.json();
+
+    if (Array.isArray(data.products) && data.products.length) {
+      rawProducts = data.products;
+    }
+  } catch (error) {
+    console.warn("ADEN products.json could not be loaded:", error);
+  }
   const fallback =
     "assets/images/editorial/editorial-001.webp";
 
