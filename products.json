@@ -359,6 +359,41 @@
   "videos": [
     "assets/videos/copy_70F127D6-ED2E-461C-AD89-E03B04AAF9AE.MOV",
     "assets/videos/copy_ADA77E49-A0C4-4B18-AE9A-32F9800DE5A7.MOV",
+      "videos": [
+    "assets/videos/copy_70F127D6-ED2E-461C-AD89-E03B04AAF9AE.MOV",
+    "assets/videos/copy_ADA77E49-A0C4-4B18-AE9A-32F9800DE5A7.MOV",
     "assets/videos/v14044g50000daeepmnog65lspn2kk90.MP4"
+  ],
+
+  "products": [
+    {
+      "id": "aden-001",
+      "name": "ADEN Graphic Ribbed Henley",
+      "price": 490000,
+      "currency": "VND",
+      "category": "TOPS",
+      "colors": [
+        "Khaki",
+        "Burgundy",
+        "Black"
+      ],
+      "sizes": [
+        "Free Size"
+      ],
+      "images": [
+        "assets/images/products/aden-001/RABIT1.jpg",
+        "assets/images/products/aden-001/RABIT2.jpg",
+        "assets/images/products/aden-001/RABIT3.jpg",
+        "assets/images/products/aden-001/RABIT4.jpg",
+        "assets/images/products/aden-001/RABIT5.jpg",
+        "assets/images/products/aden-001/RABIT6.jpg",
+        "assets/images/products/aden-001/RABIT7.jpg",
+        "assets/images/products/aden-001/RABIT8.jpg",
+        "assets/images/products/aden-001/RABIT9.jpg"
+      ],
+      "description": "Contemporary ribbed long-sleeve henley with graphic typography and cross detail.",
+      "stock": 0,
+      "status": "active"
+    }
   ]
 }
