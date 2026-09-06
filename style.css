@@ -534,17 +534,7 @@ footer{background:#0b0b0b;color:#888;padding:30px 3.5vw 23px;display:grid;grid-t
   transform:translateY(0);
 }
 
-.new-tag{
-  position:absolute;
-  z-index:2;
-  top:12px;
-  left:12px;
-  padding:6px 8px;
-  background:var(--black);
-  color:var(--white);
-  font-size:8px;
-  letter-spacing:1.5px;
-}
+
 
 
 /* =========================================================
@@ -636,8 +626,37 @@ footer{background:#0b0b0b;color:#888;padding:30px 3.5vw 23px;display:grid;grid-t
     width:82px;
     height:105px;
   }
+/* ADEN — PRODUCT NEW BADGE FINAL */
+
+.product-image {
+  position: relative;
 }
-/* FIX — PRODUCT NEW BADGE */
+
+.product-image .new-tag {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  left: auto !important;
+
+  display: block !important;
+  width: fit-content !important;
+  max-width: fit-content !important;
+  min-width: 0 !important;
+
+  padding: 6px 9px !important;
+  margin: 0 !important;
+
+  background: #111 !important;
+  color: #fff !important;
+
+  font-size: 8px !important;
+  line-height: 1 !important;
+  letter-spacing: 1.5px !important;
+  white-space: nowrap !important;
+
+  box-sizing: border-box !important;
+  z-index: 10 !important;
+}
 .product-card {
   position: relative;
 }
