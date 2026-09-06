@@ -17,7 +17,7 @@ button,input{font:inherit}
 .bag{font-size:18px}.bag b{font-size:9px;font-weight:400;margin-left:3px}
 .shipping{font-size:8px;letter-spacing:.16em}
 .wordmark{display:flex;align-items:center;justify-content:center;margin:0;color:#f7f5f0;line-height:1}
-.header-logo{display:block;width:38px;height:42px;object-fit:contain;object-position:center}
+.header-logo{display:block;width:27px;height:34px;object-fit:contain;object-position:center}
 .aden-mark{width:31px;height:31px;display:block;flex:0 0 auto;color:#f7f5f0}.wordmark span{display:block;padding-left:.28em}
 .menu-toggle{display:none;background:none;border:0;color:white;font-size:20px}
 
@@ -71,9 +71,8 @@ button,input{font:inherit}
 .journal-grid img{width:100%;display:block;aspect-ratio:1/.95;object-fit:cover;cursor:pointer;transition:.4s}
 .journal-grid img:hover{opacity:.82}
 
-.newsletter{background:#0b0b0b;color:#eee;padding:32px 3.5vw;display:grid;grid-template-columns:1fr 1.25fr 1.8fr;align-items:center;gap:35px}
-.newsletter-brand{display:flex;align-items:center;justify-content:flex-start}
-.footer-logo{display:block;width:66px;height:auto;object-fit:contain}.newsletter-logo{width:58px}
+.newsletter{background:#0b0b0b;color:#eee;padding:32px 3.5vw;display:grid;grid-template-columns:1fr 2fr;align-items:center;gap:35px}
+.footer-logo{display:block;width:72px;height:auto;object-fit:contain}
 .newsletter-copy p{font-size:8px;letter-spacing:.22em;margin:0 0 8px}.newsletter-copy span{font-size:8px;color:#999;letter-spacing:.04em}
 .newsletter form{display:flex;border:1px solid #555;height:39px}.newsletter input{flex:1;min-width:0;background:transparent;border:0;padding:0 13px;color:white;outline:none;font-size:9px}.newsletter button{background:transparent;color:white;border:0;border-left:1px solid #555;padding:0 18px;font-size:8px;letter-spacing:.12em;cursor:pointer}.newsletter button span{font-size:13px;margin-left:7px}
 
@@ -92,13 +91,13 @@ footer{background:#0b0b0b;color:#888;padding:30px 3.5vw 23px;display:grid;grid-t
  .newsletter{grid-template-columns:1fr 1fr}.newsletter form{grid-column:1/-1}
 }
 @media(max-width:650px){
- .site-header{height:58px}.nav-left,.nav-right{display:none}.wordmark{font-size:14px}.header-logo{width:33px;height:38px}.wordmark .aden-mark{width:27px;height:27px}.wordmark span{padding-left:.22em}.menu-toggle{display:block;position:absolute;right:18px}
+ .site-header{height:58px}.nav-left,.nav-right{display:none}.wordmark{font-size:14px}.header-logo{width:25px;height:32px}.wordmark .aden-mark{width:27px;height:27px}.wordmark span{padding-left:.22em}.menu-toggle{display:block;position:absolute;right:18px}
  .hero{min-height:720px;margin-top:58px;height:calc(100vh - 58px)}.hero-copy{top:49%;left:7vw}.hero h1{font-size:58px}.hero-side{display:none}.hero-count{right:7vw}
  .section{padding:48px 5vw}.section-head h2{font-size:25px}
  .product-grid{grid-template-columns:repeat(2,1fr);gap:28px 12px}.product-image{aspect-ratio:1/.95}.product-name{font-size:8px}
  .editorial{height:390px}.editorial-center h2{font-size:24px}.editorial-side{right:5vw;font-size:6px}
  .journal-grid{grid-template-columns:repeat(2,1fr)}
  .newsletter{padding:28px 5vw;grid-template-columns:1fr}.newsletter form{grid-column:auto}
- footer{padding:25px 5vw 20px;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:22px}.footer-brand{justify-content:center}.footer-logo{width:58px}.footer-main{display:flex;align-items:center;justify-content:space-between;padding-top:0}.footer-links{gap:13px;flex-wrap:wrap}.social{gap:14px}.copyright{width:100%;justify-content:space-between}
+ footer{padding:25px 5vw 20px;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:22px}.footer-brand{justify-content:center}.footer-logo{width:64px}.footer-main{display:flex;align-items:center;justify-content:space-between;padding-top:0}.footer-links{gap:13px;flex-wrap:wrap}.social{gap:14px}.copyright{width:100%;justify-content:space-between}
  .mobile-menu{position:fixed;inset:0;background:#0b0b0b;color:white;z-index:70;display:none;flex-direction:column;justify-content:center;padding:12vw;gap:25px}.mobile-menu.open{display:flex}.mobile-menu a{font-family:"Playfair Display",serif;font-size:42px}
 }

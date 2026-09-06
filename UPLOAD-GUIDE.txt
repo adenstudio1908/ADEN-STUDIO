@@ -1,7 +1,15 @@
-ADEN STUDIO — FINAL GITHUB PAGES PACKAGE
+ADEN STUDIO FINAL CLEAN
 
-1. Upload/copy ALL files and folders in this package into the root of the ADEN-STUDIO repository.
-2. Keep the assets folder intact.
-3. Commit and Push origin on branch main.
-4. GitHub Pages should publish from the repository root.
-5. CNAME is already included for adensudio.asia only if present in the original package; verify it says: adenstudio.asia
+1. Copy ALL contents of this folder into your local ADEN-STUDIO repository.
+2. Replace existing files.
+3. Open GitHub Desktop.
+4. Commit all changes to main.
+5. Push origin.
+6. Test the site in an incognito/private browser window.
+
+Logo files intentionally kept:
+- assets/aden-mark-transparent.png = header A mark
+- assets/aden-logo-full-transparent.png = newsletter/footer full logo
+- assets/favicon.png = favicon
+
+Duplicate/old logo files were removed.

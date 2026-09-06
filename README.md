@@ -1,15 +1,12 @@
-# ADEN STUDIO — GitHub Pages
+# ADEN STUDIO — FINAL CLEAN V2
 
-Complete website package prepared from the supplied ADENSTUDIO ZIP, including the supplied ADEN logo.
+Bản upload sạch cho GitHub Pages.
 
-## Upload
-Put the contents of this folder in the ROOT of the `ADEN-STUDIO` repository. Do not create an extra nested folder.
+- Header: chỉ 1 biểu tượng A.
+- Hero: không dùng logo overlay, tránh lỗi logo khổng lồ.
+- Newsletter: không lặp logo.
+- Footer: chỉ 1 logo đầy đủ A + ADEN.
+- Giữ toàn bộ images/videos.
+- CNAME: adenstudio.asia
 
-## GitHub Pages
-- Branch: `main`
-- Folder: `/ (root)`
-- Custom domain: `adenstudio.asia`
-- `CNAME` is already included.
-
-## DNS
-Keep the existing Mắt Bão DNS configuration pointing the root domain to GitHub Pages.
+Upload toàn bộ nội dung thư mục này vào repository ADEN-STUDIO, sau đó Commit và Push origin.
