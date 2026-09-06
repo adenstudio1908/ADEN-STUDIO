@@ -1,0 +1,5 @@
+ADEN STUDIO FINAL CLEAN V3
+
+Header: ADEN wordmark centered; E is three horizontal bars. Hero has no logo overlay. Footer keeps full ADEN logo.
+
+Upload: copy all contents of this folder into the ADEN-STUDIO repository, replace existing files, commit, then Push origin. Do not upload .DS_Store files.

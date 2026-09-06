@@ -101,3 +101,12 @@ footer{background:#0b0b0b;color:#888;padding:30px 3.5vw 23px;display:grid;grid-t
  footer{padding:25px 5vw 20px;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:22px}.footer-brand{justify-content:center}.footer-logo{width:64px}.footer-main{display:flex;align-items:center;justify-content:space-between;padding-top:0}.footer-links{gap:13px;flex-wrap:wrap}.social{gap:14px}.copyright{width:100%;justify-content:space-between}
  .mobile-menu{position:fixed;inset:0;background:#0b0b0b;color:white;z-index:70;display:none;flex-direction:column;justify-content:center;padding:12vw;gap:25px}.mobile-menu.open{display:flex}.mobile-menu a{font-family:"Playfair Display",serif;font-size:42px}
 }
+
+/* FINAL CLEAN V3 — centered ADEN wordmark with three-bar E */
+.wordmark{display:flex;align-items:center;justify-content:center;gap:26px;width:auto;height:100%;color:#f7f5f0;text-decoration:none;line-height:1}
+.wordmark-a,.wordmark-letter{display:block;font-family:Arial,Helvetica,sans-serif;font-weight:300;font-size:30px;line-height:1;letter-spacing:.02em}
+.wordmark-a{font-size:31px;transform:scaleX(.92);}
+.wordmark-e{width:24px;height:25px;display:flex;flex-direction:column;justify-content:space-between;flex:0 0 24px}
+.wordmark-e span{display:block;width:100%;height:2px;background:currentColor}
+.header-logo{display:none!important}
+@media(max-width:800px){.wordmark{gap:15px}.wordmark-a,.wordmark-letter{font-size:21px}.wordmark-a{font-size:22px}.wordmark-e{width:17px;height:18px;flex-basis:17px}.wordmark-e span{height:1.5px}}
