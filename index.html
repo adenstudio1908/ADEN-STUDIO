@@ -12,6 +12,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Manrope:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+.contact-section{
+  padding:96px 24px;
+  text-align:center;
+  border-top:1px solid rgba(0,0,0,.12);
+}
+.contact-inner{
+  max-width:720px;
+  margin:0 auto;
+}
+.contact-kicker{
+  margin:0 0 18px;
+  font-size:11px;
+  letter-spacing:3px;
+  opacity:.55;
+}
+.contact-section h2{
+  margin:0 0 34px;
+  font-size:clamp(28px,4vw,46px);
+  font-weight:400;
+  letter-spacing:4px;
+}
+.contact-details{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.contact-details a{
+  color:inherit;
+  text-decoration:none;
+  font-size:15px;
+  letter-spacing:1px;
+}
+.contact-details a:hover{
+  opacity:.55;
+}
+</style>
+
 </head>
 <body>
 <header class="site-header" id="top">
@@ -89,12 +127,23 @@
     <button>SUBSCRIBE <span>→</span></button>
   </form>
 </section>
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <p class="contact-kicker">ADEN / CONTACT</p>
+    <h2>GET IN TOUCH</h2>
+    <div class="contact-details">
+      <a href="tel:+84974098951">+84 974 098 951</a>
+      <a href="mailto:adenstudio1908@email.com">adenstudio1908@email.com</a>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
   <div class="footer-brand"><img class="footer-logo" src="assets/aden-logo-header-footer.png" alt="ADEN"></div>
   <div class="footer-main">
-    <div class="footer-links"><a href="#">HELP</a><a href="#">SHIPPING</a><a href="#">RETURNS</a><a href="#">SIZE GUIDE</a><a href="#">CONTACT</a></div>
+    <div class="footer-links"><a href="#">HELP</a><a href="#">SHIPPING</a><a href="#">RETURNS</a><a href="#">SIZE GUIDE</a><a href="#contact">CONTACT</a></div>
     <div class="social"><a href="https://www.instagram.com/adenstudio1908/" target="_blank" rel="noopener">IG</a><a href="#">TK</a><a href="#">YT</a><a href="#">PIN</a></div>
   </div>
   <div class="copyright"><span>© 2026 ADEN. ALL RIGHTS RESERVED.</span><i></i><span>A HIGHER STANDARD.</span></div>
