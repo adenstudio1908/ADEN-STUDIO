@@ -111,3 +111,529 @@ footer{background:#0b0b0b;color:#888;padding:30px 3.5vw 23px;display:grid;grid-t
   .header-logo{width:45px;height:53px}
   .footer-logo{width:76px;height:84px}
 }
+/* =========================================================
+   ADEN ECOMMERCE — PRODUCT / CART / CHECKOUT UI
+   ========================================================= */
+
+.aden-product-modal{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  background:rgba(0,0,0,.72);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  overflow:auto;
+}
+
+.aden-product-panel{
+  width:min(1180px,100%);
+  max-height:calc(100vh - 56px);
+  overflow:auto;
+  background:var(--paper);
+  color:var(--black);
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
+  position:relative;
+}
+
+.aden-product-close{
+  position:absolute;
+  top:16px;
+  right:18px;
+  z-index:5;
+  width:42px;
+  height:42px;
+  border:0;
+  background:rgba(255,255,255,.9);
+  font-size:28px;
+  line-height:1;
+  cursor:pointer;
+}
+
+.aden-product-gallery{
+  padding:24px;
+  background:var(--paper2);
+}
+
+.aden-product-main{
+  width:100%;
+  aspect-ratio:4/5;
+  background:#ddd;
+  overflow:hidden;
+}
+
+.aden-main-image{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+
+.aden-product-thumbs{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+
+.aden-thumb{
+  border:1px solid transparent;
+  padding:0;
+  background:none;
+  cursor:pointer;
+  aspect-ratio:1/1;
+  overflow:hidden;
+}
+
+.aden-thumb.active{
+  border-color:var(--black);
+}
+
+.aden-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.aden-product-info{
+  padding:56px 48px 48px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.aden-product-label{
+  font-size:10px;
+  letter-spacing:3px;
+  opacity:.55;
+  margin-bottom:14px;
+}
+
+.aden-product-info h2{
+  margin:0 0 18px;
+  font-size:clamp(25px,3vw,38px);
+  font-weight:400;
+  letter-spacing:1px;
+  line-height:1.1;
+}
+
+.aden-product-price{
+  font-size:15px;
+  letter-spacing:1px;
+  margin-bottom:28px;
+}
+
+.aden-product-description{
+  margin:0 0 34px;
+  max-width:500px;
+  font-size:13px;
+  line-height:1.8;
+  color:#666;
+}
+
+.aden-option{
+  margin-bottom:24px;
+}
+
+.aden-option-title{
+  font-size:10px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.aden-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.aden-option-btn{
+  min-width:92px;
+  min-height:42px;
+  padding:10px 15px;
+  background:transparent;
+  border:1px solid #c8c3bb;
+  color:var(--black);
+  font-size:11px;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.aden-option-btn:hover,
+.aden-option-btn.selected{
+  background:var(--black);
+  color:var(--white);
+  border-color:var(--black);
+}
+
+.aden-add-cart{
+  width:100%;
+  min-height:54px;
+  margin-top:10px;
+  border:1px solid var(--black);
+  background:var(--black);
+  color:var(--white);
+  font-size:11px;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.aden-add-cart:hover{
+  background:transparent;
+  color:var(--black);
+}
+
+.aden-product-note{
+  margin-top:16px;
+  font-size:10px;
+  line-height:1.6;
+  color:#777;
+  letter-spacing:.5px;
+}
+
+
+/* =========================================================
+   CART DRAWER
+   ========================================================= */
+
+#adenCartPanel{
+  position:fixed;
+  inset:0;
+  z-index:300;
+  pointer-events:none;
+}
+
+#adenCartPanel.open{
+  pointer-events:auto;
+}
+
+.aden-cart-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  opacity:0;
+  transition:opacity .25s ease;
+}
+
+#adenCartPanel.open .aden-cart-overlay{
+  opacity:1;
+}
+
+.aden-cart{
+  position:absolute;
+  top:0;
+  right:0;
+  width:min(470px,100%);
+  height:100%;
+  background:var(--paper);
+  color:var(--black);
+  transform:translateX(100%);
+  transition:transform .3s ease;
+  display:flex;
+  flex-direction:column;
+}
+
+#adenCartPanel.open .aden-cart{
+  transform:translateX(0);
+}
+
+.aden-cart-header{
+  min-height:78px;
+  padding:0 26px;
+  border-bottom:1px solid var(--darkline);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.aden-cart-header h2{
+  margin:0;
+  font-size:13px;
+  letter-spacing:2px;
+  font-weight:500;
+}
+
+.aden-cart-close{
+  border:0;
+  background:none;
+  font-size:28px;
+  cursor:pointer;
+  line-height:1;
+}
+
+.aden-cart-items{
+  flex:1;
+  overflow:auto;
+  padding:22px;
+}
+
+.aden-empty-cart{
+  min-height:300px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  letter-spacing:2px;
+  color:#777;
+}
+
+.aden-cart-item{
+  display:grid;
+  grid-template-columns:100px 1fr;
+  gap:16px;
+  padding-bottom:20px;
+  margin-bottom:20px;
+  border-bottom:1px solid var(--darkline);
+}
+
+.aden-cart-item > img{
+  width:100px;
+  height:125px;
+  object-fit:cover;
+  display:block;
+}
+
+.aden-cart-item-info{
+  font-size:11px;
+  line-height:1.7;
+  color:#666;
+}
+
+.aden-cart-item-name{
+  color:var(--black);
+  font-size:12px;
+  letter-spacing:.5px;
+  margin-bottom:4px;
+}
+
+.aden-cart-item-price{
+  margin-top:5px;
+  color:var(--black);
+}
+
+.aden-quantity{
+  margin-top:14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.aden-quantity button{
+  border:1px solid #bbb6ae;
+  background:transparent;
+  min-width:30px;
+  height:30px;
+  cursor:pointer;
+}
+
+.aden-quantity span{
+  min-width:20px;
+  text-align:center;
+  color:var(--black);
+}
+
+.aden-quantity .qty-remove{
+  border:0;
+  margin-left:auto;
+  font-size:9px;
+  letter-spacing:1px;
+  width:auto;
+  padding:0 4px;
+}
+
+.aden-cart-footer{
+  padding:20px 26px 26px;
+  border-top:1px solid var(--darkline);
+  background:var(--paper);
+}
+
+.aden-cart-total{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+.aden-cart-total strong{
+  font-weight:500;
+  font-size:13px;
+}
+
+.aden-checkout{
+  width:100%;
+  height:54px;
+  border:1px solid var(--black);
+  background:var(--black);
+  color:var(--white);
+  cursor:pointer;
+  font-size:11px;
+  letter-spacing:2px;
+  transition:.2s ease;
+}
+
+.aden-checkout:hover{
+  background:transparent;
+  color:var(--black);
+}
+
+
+/* =========================================================
+   BAG HEADER
+   ========================================================= */
+
+.bag{
+  cursor:pointer;
+}
+
+.bag b{
+  font-weight:400;
+  font-size:10px;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+   ========================================================= */
+
+.product-card{
+  cursor:pointer;
+  position:relative;
+}
+
+.product-image{
+  position:relative;
+}
+
+.product-plus{
+  position:absolute;
+  right:14px;
+  bottom:14px;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:rgba(255,255,255,.92);
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  opacity:0;
+  transform:translateY(5px);
+  transition:.2s ease;
+}
+
+.product-card:hover .product-plus{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.new-tag{
+  position:absolute;
+  z-index:2;
+  top:12px;
+  left:12px;
+  padding:6px 8px;
+  background:var(--black);
+  color:var(--white);
+  font-size:8px;
+  letter-spacing:1.5px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:800px){
+
+  .aden-product-modal{
+    padding:0;
+    align-items:flex-start;
+  }
+
+  .aden-product-panel{
+    width:100%;
+    min-height:100vh;
+    max-height:none;
+    grid-template-columns:1fr;
+  }
+
+  .aden-product-gallery{
+    padding:12px;
+  }
+
+  .aden-product-main{
+    aspect-ratio:4/5;
+  }
+
+  .aden-product-thumbs{
+    grid-template-columns:repeat(5,1fr);
+  }
+
+  .aden-product-info{
+    padding:32px 22px 40px;
+  }
+
+  .aden-product-info h2{
+    font-size:27px;
+  }
+
+  .aden-product-close{
+    top:10px;
+    right:10px;
+    width:38px;
+    height:38px;
+  }
+
+  .aden-cart{
+    width:100%;
+  }
+
+  .product-plus{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@media(max-width:480px){
+
+  .aden-product-thumbs{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .aden-product-info{
+    padding:28px 18px 32px;
+  }
+
+  .aden-option-btn{
+    flex:1 1 auto;
+  }
+
+  .aden-cart-header{
+    padding:0 18px;
+  }
+
+  .aden-cart-items{
+    padding:18px;
+  }
+
+  .aden-cart-footer{
+    padding:18px;
+  }
+
+  .aden-cart-item{
+    grid-template-columns:82px 1fr;
+  }
+
+  .aden-cart-item > img{
+    width:82px;
+    height:105px;
+  }
+}
