@@ -1,15 +1,16 @@
-ADEN STUDIO FINAL CLEAN
+ADEN STUDIO — FINAL CLEAN V4
 
-1. Copy ALL contents of this folder into your local ADEN-STUDIO repository.
-2. Replace existing files.
+- Header uses the exact original ADEN logo artwork image.
+- Footer uses the same exact original ADEN logo artwork image.
+- The E is NOT built with HTML/CSS; its three horizontal bars come directly from the artwork.
+- Hero does not use any logo image.
+- Only logo assets kept: assets/aden-logo-header-footer.png and assets/favicon.png.
+
+UPLOAD
+1. Unzip this folder.
+2. Copy everything inside into your ADEN-STUDIO repository and choose Replace.
 3. Open GitHub Desktop.
-4. Commit all changes to main.
-5. Push origin.
-6. Test the site in an incognito/private browser window.
-
-Logo files intentionally kept:
-- assets/aden-mark-transparent.png = header A mark
-- assets/aden-logo-full-transparent.png = newsletter/footer full logo
-- assets/favicon.png = favicon
-
-Duplicate/old logo files were removed.
+4. Do not select .DS_Store files (none are included here).
+5. Summary: FINAL CLEAN V4 - Original ADEN Logo
+6. Click Commit to main.
+7. Click Push origin.

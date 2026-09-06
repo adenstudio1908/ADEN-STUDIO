@@ -1,0 +1,16 @@
+ADEN STUDIO — FINAL CLEAN V4
+
+Logo setup:
+- Header uses the exact original ADEN artwork image.
+- Footer uses the same exact original ADEN artwork image.
+- The E is NOT built with HTML/CSS; the three horizontal bars come directly from the logo artwork.
+- Hero does not use the logo.
+
+Upload:
+1. Unzip this folder.
+2. Copy everything inside into your ADEN-STUDIO repository and Replace.
+3. Open GitHub Desktop.
+4. Do not select any .DS_Store files (none are included in this package).
+5. Summary: FINAL CLEAN V4 - Original ADEN Logo
+6. Commit to main.
+7. Push origin.

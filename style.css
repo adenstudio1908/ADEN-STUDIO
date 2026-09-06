@@ -102,11 +102,12 @@ footer{background:#0b0b0b;color:#888;padding:30px 3.5vw 23px;display:grid;grid-t
  .mobile-menu{position:fixed;inset:0;background:#0b0b0b;color:white;z-index:70;display:none;flex-direction:column;justify-content:center;padding:12vw;gap:25px}.mobile-menu.open{display:flex}.mobile-menu a{font-family:"Playfair Display",serif;font-size:42px}
 }
 
-/* FINAL CLEAN V3 — centered ADEN wordmark with three-bar E */
-.wordmark{display:flex;align-items:center;justify-content:center;gap:26px;width:auto;height:100%;color:#f7f5f0;text-decoration:none;line-height:1}
-.wordmark-a,.wordmark-letter{display:block;font-family:Arial,Helvetica,sans-serif;font-weight:300;font-size:30px;line-height:1;letter-spacing:.02em}
-.wordmark-a{font-size:31px;transform:scaleX(.92);}
-.wordmark-e{width:24px;height:25px;display:flex;flex-direction:column;justify-content:space-between;flex:0 0 24px}
-.wordmark-e span{display:block;width:100%;height:2px;background:currentColor}
-.header-logo{display:none!important}
-@media(max-width:800px){.wordmark{gap:15px}.wordmark-a,.wordmark-letter{font-size:21px}.wordmark-a{font-size:22px}.wordmark-e{width:17px;height:18px;flex-basis:17px}.wordmark-e span{height:1.5px}}
+/* FINAL CLEAN V4 — use the original ADEN logo artwork in Header + Footer */
+.wordmark{width:110px;height:72px;display:flex;align-items:center;justify-content:center;line-height:0;overflow:hidden}
+.header-logo{display:block!important;width:58px;height:66px;max-width:none;object-fit:contain;object-position:center}
+.footer-logo{width:86px;height:96px;object-fit:contain;object-position:center}
+@media(max-width:650px){
+  .wordmark{width:82px;height:58px}
+  .header-logo{width:45px;height:53px}
+  .footer-logo{width:76px;height:84px}
+}
