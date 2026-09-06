@@ -357,15 +357,12 @@
     "assets/images/editorial/editorial-111.webp"
   ],
   "videos": [
-    "assets/videos/copy_70F127D6-ED2E-461C-AD89-E03B04AAF9AE.MOV",
-    "assets/videos/copy_ADA77E49-A0C4-4B18-AE9A-32F9800DE5A7.MOV",
-      "videos": [
-    "assets/videos/copy_70F127D6-ED2E-461C-AD89-E03B04AAF9AE.MOV",
-    "assets/videos/copy_ADA77E49-A0C4-4B18-AE9A-32F9800DE5A7.MOV",
-    "assets/videos/v14044g50000daeepmnog65lspn2kk90.MP4"
-  ],
+  "assets/videos/copy_70F127D6-ED2E-461C-AD89-E03B04AAF9AE.MOV",
+  "assets/videos/copy_ADA77E49-A0C4-4B18-AE9A-32F9800DE5A7.MOV",
+  "assets/videos/v14044g50000daeepmnog65lspn2kk90.MP4"
+],
 
-  "products": [
+"products": [
     {
       "id": "aden-001",
       "name": "ADEN Graphic Ribbed Henley",
