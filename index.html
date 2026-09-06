@@ -3,61 +3,122 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ADEN STUDIO — Contemporary Menswear</title>
-<meta name="description" content="ADEN STUDIO — contemporary menswear and visual archive.">
-<link rel="icon" type="image/png" href="assets/logo.png">
+<meta name="theme-color" content="#0a0a0a">
+<title>ADEN — A Higher Standard</title>
+<meta name="description" content="ADEN STUDIO — contemporary menswear. Form, function, attitude.">
+<link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Manrope:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="header">
-  <a class="brand" href="#">
-    <img src="assets/logo.webp" alt="ADEN">
-    <span>ADEN <b>STUDIO</b></span>
+<header class="site-header" id="top">
+  <div class="nav-left">
+    <a href="#new-in">NEW IN</a>
+    <a href="#collections">COLLECTIONS</a>
+    <a href="#men">MEN</a>
+    <a href="#journal">JOURNAL</a>
+  </div>
+  <a class="wordmark" href="#top" aria-label="ADEN home">
+    <img src="assets/logo.png" alt="ADEN logo">
+    <span>A D E N</span>
   </a>
-  <nav><a href="#collection">Collection</a><a href="#journal">Journal</a><a href="#about">About</a><a href="https://www.instagram.com/adenstudio1908/" target="_blank" rel="noopener">Instagram ↗</a></nav>
-  <button class="hamb" aria-label="Open menu">☰</button>
+  <div class="nav-right">
+    <button class="icon-btn" aria-label="Search" id="searchBtn">⌕</button>
+    <i></i>
+    <button class="icon-btn" aria-label="Account">♙</button>
+    <button class="bag" aria-label="Shopping bag">♧ <b>0</b></button>
+    <i></i>
+    <span class="shipping">WORLDWIDE SHIPPING</span>
+  </div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
 </header>
 
 <main>
-<section class="hero">
-  <div class="hero-copy">
-    <p class="eyebrow">ADEN STUDIO / CONTEMPORARY MENSWEAR</p>
-    <h1>Quiet forms.<br><em>Strong presence.</em></h1>
-    <p class="lead">A visual catalog of ADEN STUDIO — defined by clean proportion, restrained details and an editorial point of view.</p>
-    <div class="hero-actions"><a class="btn" href="#collection">Explore collection</a><a class="link" href="#about">The studio ↓</a></div>
+<section class="hero" id="new-in">
+  <div class="hero-media">
+    <div class="hero-slides" id="heroSlides"></div>
+    <div class="hero-shade"></div>
+    <div class="hero-copy">
+      <p class="micro">ADEN / MENSWEAR / A MODERN PERSPECTIVE</p>
+      <h1>FORM /<br>FUNCTION /<br>ATTITUDE</h1>
+      <p class="tagline">CLOTHES FOR A MORE INTENTIONAL TOMORROW</p>
+      <a class="outline-btn" href="#collections">SHOP NEW ARRIVALS <span>→</span></a>
+    </div>
+    <div class="hero-side">
+      <span>PEOPLE</span><span>PLACES</span><span>PIECES</span><span>A HIGHER STANDARD</span>
+    </div>
+    <div class="hero-count"><b>01</b><em></em><span>02</span><span>03</span></div>
   </div>
-  <div class="hero-visual">
-    <div class="hero-image" id="heroImage"></div>
-    <div class="hero-mark"><img src="assets/logo.webp" alt=""></div>
+</section>
+
+<section class="arrivals section" id="collections">
+  <div class="section-head">
+    <h2>NEW ARRIVALS</h2>
+    <a href="#men">VIEW ALL <span>→</span></a>
   </div>
+  <div class="product-grid" id="productGrid"></div>
 </section>
 
-<section id="collection" class="section">
-  <div class="head"><div><p class="eyebrow">Selected looks</p><h2>Collection</h2></div><span id="metaCount"></span></div>
-  <div class="filters"><button class="active" data-filter="all">All</button><button data-filter="looks">Looks</button><button data-filter="journal">Journal</button></div>
-  <div id="collectionGrid" class="collection-grid"></div>
+<section class="editorial" id="men">
+  <div class="editorial-photo" id="editorialPhoto"></div>
+  <div class="editorial-center">
+    <p>ADEN</p>
+    <h2>BEYOND TRENDS<br><i>A HIGHER STANDARD</i></h2>
+    <a href="#journal">DISCOVER THE COLLECTION <span>→</span></a>
+  </div>
+  <div class="editorial-side">MODERN<br>MASCULINITY<br>FOR A BRIGHTER<br>TOMORROW</div>
 </section>
 
-<section id="journal" class="journal">
-  <div class="section head-wrap"><div class="head"><div><p class="eyebrow">Instagram archive</p><h2>Visual Journal</h2></div><span>ADEN / 2026</span></div></div>
-  <div id="journalGrid" class="masonry"></div>
+<section class="journal section" id="journal">
+  <div class="section-head">
+    <h2>JOURNAL</h2>
+    <span>ADEN / 2026</span>
+  </div>
+  <div class="journal-grid" id="journalGrid"></div>
 </section>
 
-<section id="about" class="about section">
-  <div><p class="eyebrow">About the studio</p><h2>ADEN<br>STUDIO</h2></div>
-  <div class="about-text"><p>ADEN STUDIO explores modern menswear through silhouette, material and atmosphere. This space brings together selected looks and the visual language of the studio.</p><a class="link" href="https://www.instagram.com/adenstudio1908/" target="_blank" rel="noopener">Follow @adenstudio1908 ↗</a></div>
+<section class="newsletter">
+  <div class="newsletter-brand"><img src="assets/logo.png" alt=""> <span>A D E N</span></div>
+  <div class="newsletter-copy">
+    <p>JOIN OUR WORLD</p>
+    <span>Be the first to know about new arrivals, exclusive stories and special offers.</span>
+  </div>
+  <form id="subscribeForm">
+    <input type="email" placeholder="Your email address" aria-label="Your email address" required>
+    <button>SUBSCRIBE <span>→</span></button>
+  </form>
 </section>
 </main>
 
-<footer><a class="footer-brand" href="#"><img src="assets/logo.webp" alt="">ADEN STUDIO</a><span>© 2026 ADEN STUDIO</span><a href="https://adenstudio.asia">adenstudio.asia ↗</a></footer>
+<footer>
+  <div class="footer-links"><a href="#">HELP</a><a href="#">SHIPPING</a><a href="#">RETURNS</a><a href="#">SIZE GUIDE</a><a href="#">CONTACT</a></div>
+  <div class="social"><a href="https://www.instagram.com/adenstudio1908/" target="_blank" rel="noopener">IG</a><a href="#">TK</a><a href="#">YT</a><a href="#">PIN</a></div>
+  <div class="copyright"><span>© 2026 ADEN. ALL RIGHTS RESERVED.</span><i></i><span>A HIGHER STANDARD.</span></div>
+</footer>
 
-<div class="modal" id="modal" aria-hidden="true">
-<button class="close">×</button><button class="prev">‹</button>
-<div class="viewer"><img id="viewerImg" alt=""><div><span id="viewerTitle"></span><span id="viewerIndex"></span></div></div>
-<button class="next">›</button>
+<div class="search-panel" id="searchPanel">
+  <button class="search-close" id="searchClose">×</button>
+  <p>SEARCH ADEN</p>
+  <input id="searchInput" type="search" placeholder="Search collection, journal...">
 </div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button id="mobileClose">×</button>
+  <a href="#new-in">NEW IN</a><a href="#collections">COLLECTIONS</a><a href="#men">MEN</a><a href="#journal">JOURNAL</a>
+</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close">×</button><button class="lb-prev">‹</button>
+  <img id="lbImage" alt=""><button class="lb-next">›</button>
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
+<script>
+window.ADEN_HERO = ["assets/images/look-01/01.webp", "assets/images/look-02/01.webp", "assets/images/look-03/01.webp"];
+window.ADEN_PRODUCTS = ["assets/images/look-01/01.webp", "assets/images/look-02/01.webp", "assets/images/look-03/01.webp", "assets/images/look-04/01.webp", "assets/images/look-05/01.webp", "assets/images/look-06/01.webp", "assets/images/look-07/01.webp", "assets/images/look-08/01.webp"];
+</script>
 <script src="script.js"></script>
-</body></html>
+</body>
+</html>
