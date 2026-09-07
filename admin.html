@@ -1,0 +1,2265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADEN ADMIN</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f6f4;
+      color: #111;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* LOGIN */
+
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #f4f4f1;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      padding: 48px;
+      border: 1px solid #ddd;
+    }
+
+    .login-logo {
+      text-align: center;
+      font-size: 30px;
+      letter-spacing: 8px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #777;
+      margin-bottom: 36px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid #ccc;
+      background: #fff;
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: #111;
+    }
+
+    .primary-btn {
+      width: 100%;
+      border: 0;
+      background: #111;
+      color: #fff;
+      padding: 15px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .primary-btn:hover {
+      background: #333;
+    }
+
+    .message {
+      margin-top: 14px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .error {
+      color: #b00020;
+    }
+
+    .success {
+      color: #137333;
+    }
+
+    /* ADMIN */
+
+    .admin-app {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 230px;
+      background: #111;
+      color: #fff;
+      padding: 30px 20px;
+    }
+
+    .admin-brand {
+      font-size: 22px;
+      letter-spacing: 5px;
+      margin-bottom: 8px;
+    }
+
+    .admin-label {
+      color: #999;
+      font-size: 9px;
+      letter-spacing: 2px;
+      margin-bottom: 50px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      color: #aaa;
+      border: 0;
+      padding: 13px 10px;
+      margin-bottom: 4px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      color: #fff;
+      background: #222;
+    }
+
+    .logout-btn {
+      position: absolute;
+      bottom: 25px;
+      left: 20px;
+      width: calc(100% - 40px);
+      background: transparent;
+      border: 1px solid #444;
+      color: #aaa;
+      padding: 12px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .logout-btn:hover {
+      color: #fff;
+      border-color: #777;
+    }
+
+    .main {
+      margin-left: 230px;
+      padding: 40px;
+      max-width: 1500px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+    }
+
+    .page-title {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+    }
+
+    .page-subtitle {
+      color: #777;
+      font-size: 12px;
+      margin-top: 7px;
+    }
+
+    .add-btn {
+      background: #111;
+      color: #fff;
+      border: 0;
+      padding: 13px 20px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .add-btn:hover {
+      background: #333;
+    }
+
+    /* PRODUCTS */
+
+    .products-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #ddd;
+    }
+
+    .products-table th {
+      text-align: left;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #777;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      font-weight: 500;
+    }
+
+    .products-table td {
+      padding: 14px 15px;
+      border-bottom: 1px solid #eee;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+
+    .product-thumb {
+      width: 55px;
+      height: 70px;
+      object-fit: cover;
+      display: block;
+      background: #eee;
+    }
+
+    .product-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .product-sku {
+      color: #999;
+      font-size: 10px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 8px;
+      font-size: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .status.active {
+      background: #e5f4e5;
+      color: #236b23;
+    }
+
+    .status.draft {
+      background: #eee;
+      color: #777;
+    }
+
+    .action-btn {
+      background: transparent;
+      border: 1px solid #ccc;
+      padding: 7px 10px;
+      font-size: 9px;
+      margin-right: 4px;
+    }
+
+    .action-btn:hover {
+      border-color: #111;
+    }
+
+    .delete-btn {
+      color: #a00000;
+    }
+
+    .empty {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 70px 20px;
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+    }
+
+    /* FORM */
+
+    .form-panel {
+      display: none;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 35px;
+    }
+
+    .form-panel.show {
+      display: block;
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .form-title {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .close-form {
+      background: transparent;
+      border: 0;
+      font-size: 22px;
+      color: #777;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      color: #555;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+    }
+
+    .upload-box {
+      border: 1px dashed #bbb;
+      padding: 30px;
+      text-align: center;
+      background: #fafafa;
+    }
+
+    .upload-box input {
+      display: none;
+    }
+
+    .upload-label {
+      display: inline-block;
+      border: 1px solid #111;
+      padding: 12px 18px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .upload-label:hover {
+      background: #111;
+      color: #fff;
+    }
+
+    .upload-note {
+      margin-top: 12px;
+      color: #999;
+      font-size: 10px;
+    }
+
+    .image-preview {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .preview-item {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      background: #eee;
+      overflow: hidden;
+    }
+
+    .preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .preview-number {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      background: #111;
+      color: #fff;
+      padding: 4px 6px;
+      font-size: 9px;
+    }
+
+    .check-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 5px;
+    }
+
+    .check-row input {
+      width: 16px;
+      height: 16px;
+    }
+
+    .save-area {
+      border-top: 1px solid #eee;
+      padding-top: 25px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .secondary-btn {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 14px 20px;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .save-btn {
+      background: #111;
+      color: #fff;
+      border: 0;
+      padding: 14px 25px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .save-btn:disabled {
+      opacity: .5;
+      cursor: wait;
+    }
+
+    .admin-message {
+      margin-top: 15px;
+      font-size: 12px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+      }
+
+      .admin-label {
+        margin-bottom: 20px;
+      }
+
+      .logout-btn {
+        position: static;
+        margin-top: 15px;
+        width: 100%;
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-table {
+        min-width: 800px;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .login-box {
+        padding: 30px 22px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .page-title {
+        font-size: 22px;
+      }
+
+      .form-panel {
+        padding: 20px;
+      }
+
+      .two-col,
+      .three-col {
+        grid-template-columns: 1fr;
+      }
+
+      .image-preview {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <section id="loginScreen" class="login-screen">
+    <div class="login-box">
+
+      <div class="login-logo">ADEN</div>
+      <div class="login-subtitle">ADMINISTRATION</div>
+
+      <form id="loginForm">
+
+        <div class="field">
+          <label>Email</label>
+          <input
+            id="loginEmail"
+            type="email"
+            value="adenstudio1908@gmail.com"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input
+            id="loginPassword"
+            type="password"
+            required
+          >
+        </div>
+
+        <button class="primary-btn" type="submit">
+          Login
+        </button>
+
+        <div id="loginMessage" class="message"></div>
+
+      </form>
+
+    </div>
+  </section>
+
+
+  <!-- ADMIN -->
+  <div id="adminApp" class="admin-app">
+
+    <aside class="sidebar">
+
+      <div class="admin-brand">ADEN</div>
+      <div class="admin-label">ADMIN PANEL</div>
+
+      <button
+        class="nav-btn active"
+        id="productsNav"
+        onclick="showProducts()"
+      >
+        Products
+      </button>
+
+      <button
+        class="nav-btn"
+        onclick="openProductForm()"
+      >
+        + Add Product
+      </button>
+
+      <button
+        class="logout-btn"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+
+    </aside>
+
+
+    <main class="main">
+
+      <!-- PRODUCT LIST -->
+      <section id="productsSection">
+
+        <div class="topbar">
+
+          <div>
+            <h1 class="page-title">Products</h1>
+            <div class="page-subtitle">
+              Manage ADEN products
+            </div>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="openProductForm()"
+          >
+            + Add Product
+          </button>
+
+        </div>
+
+        <div id="productsContainer">
+          <div class="empty">
+            Loading products...
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- PRODUCT FORM -->
+      <section id="formSection">
+
+        <div class="form-panel" id="productFormPanel">
+
+          <div class="form-header">
+
+            <div class="form-title" id="formTitle">
+              Add Product
+            </div>
+
+            <button
+              class="close-form"
+              onclick="closeProductForm()"
+            >
+              ×
+            </button>
+
+          </div>
+
+
+          <form id="productForm">
+
+            <input type="hidden" id="editingProductId">
+
+
+            <div class="form-grid">
+
+              <!-- LEFT -->
+              <div>
+
+                <!-- IMAGES -->
+                <div class="form-section">
+
+                  <div class="section-title">
+                    Product Images
+                  </div>
+
+                  <div class="upload-box">
+
+                    <label
+                      for="productImages"
+                      class="upload-label"
+                    >
+                      Upload Images
+                    </label>
+
+                    <input
+                      id="productImages"
+                      type="file"
+                      accept="image/*"
+                      multiple
+                    >
+
+                    <div class="upload-note">
+                      JPG / PNG / WEBP · Multiple images allowed
+                    </div>
+
+                  </div>
+
+                  <div
+                    id="imagePreview"
+                    class="image-preview"
+                  ></div>
+
+                </div>
+
+
+                <!-- BASIC -->
+                <div class="form-section">
+
+                  <div class="section-title">
+                    Product Information
+                  </div>
+
+                  <div class="field">
+
+                    <label>
+                      Product Name
+                    </label>
+
+                    <input
+                      id="productName"
+                      type="text"
+                      placeholder="ADEN Graphic Ribbed Henley"
+                      required
+                    >
+
+                  </div>
+
+
+                  <div class="two-col">
+
+                    <div class="field">
+
+                      <label>
+                        SKU
+                      </label>
+
+                      <input
+                        id="productSku"
+                        type="text"
+                        placeholder="ADEN-001"
+                        required
+                      >
+
+                    </div>
+
+
+                    <div class="field">
+
+                      <label>
+                        Category
+                      </label>
+
+                      <input
+                        id="productCategory"
+                        type="text"
+                        placeholder="TOPS"
+                      >
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="field">
+
+                    <label>
+                      Description
+                    </label>
+
+                    <textarea
+                      id="productDescription"
+                      placeholder="Product description..."
+                    ></textarea>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <!-- RIGHT -->
+              <div>
+
+                <div class="form-section">
+
+                  <div class="section-title">
+                    Pricing
+                  </div>
+
+                  <div class="two-col">
+
+                    <div class="field">
+
+                      <label>
+                        Price
+                      </label>
+
+                      <input
+                        id="productPrice"
+                        type="number"
+                        min="0"
+                        step="1"
+                        placeholder="490000"
+                        required
+                      >
+
+                    </div>
+
+
+                    <div class="field">
+
+                      <label>
+                        Currency
+                      </label>
+
+                      <select id="productCurrency">
+
+                        <option value="VND">
+                          VND
+                        </option>
+
+                        <option value="USD">
+                          USD
+                        </option>
+
+                      </select>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <!-- COLORS -->
+                <div class="form-section">
+
+                  <div class="section-title">
+                    Colors
+                  </div>
+
+                  <div class="field">
+
+                    <label>
+                      Colors — separate with comma
+                    </label>
+
+                    <input
+                      id="productColors"
+                      type="text"
+                      placeholder="Khaki, Burgundy, Black"
+                    >
+
+                  </div>
+
+                </div>
+
+
+                <!-- SIZES -->
+                <div class="form-section">
+
+                  <div class="section-title">
+                    Sizes
+                  </div>
+
+                  <div class="field">
+
+                    <label>
+                      Sizes — separate with comma
+                    </label>
+
+                    <input
+                      id="productSizes"
+                      type="text"
+                      placeholder="Free Size"
+                    >
+
+                  </div>
+
+                </div>
+
+
+                <!-- STOCK -->
+                <div class="form-section">
+
+                  <div class="section-title">
+                    Inventory
+                  </div>
+
+                  <div class="field">
+
+                    <label>
+                      Stock Quantity
+                    </label>
+
+                    <input
+                      id="productStock"
+                      type="number"
+                      min="0"
+                      step="1"
+                      value="0"
+                    >
+
+                  </div>
+
+                </div>
+
+
+                <!-- STATUS -->
+                <div class="form-section">
+
+                  <div class="section-title">
+                    Status
+                  </div>
+
+                  <div class="check-row">
+
+                    <input
+                      id="productActive"
+                      type="checkbox"
+                      checked
+                    >
+
+                    <label for="productActive">
+                      Active — visible on storefront
+                    </label>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="save-area">
+
+              <button
+                type="button"
+                class="secondary-btn"
+                onclick="closeProductForm()"
+              >
+                Cancel
+              </button>
+
+              <button
+                id="saveProductBtn"
+                type="submit"
+                class="save-btn"
+              >
+                Save Product
+              </button>
+
+            </div>
+
+            <div
+              id="adminMessage"
+              class="admin-message"
+            ></div>
+
+          </form>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+<script>
+
+/* =========================================================
+   ADEN SUPABASE CONFIG
+   ========================================================= */
+
+const SUPABASE_URL =
+  "https://vtfodoxsulmnhaahplwf.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_G8TiKAJauItRaxCunDtSzQ_19OZUyOT";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let selectedImages = [];
+let editingProductId = null;
+
+
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const loginScreen =
+  document.getElementById("loginScreen");
+
+const adminApp =
+  document.getElementById("adminApp");
+
+const loginForm =
+  document.getElementById("loginForm");
+
+const loginMessage =
+  document.getElementById("loginMessage");
+
+const productForm =
+  document.getElementById("productForm");
+
+const imageInput =
+  document.getElementById("productImages");
+
+const imagePreview =
+  document.getElementById("imagePreview");
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  async () => {
+
+    const {
+      data: {
+        session
+      }
+    } = await supabaseClient.auth.getSession();
+
+    if (session) {
+      showAdmin();
+    }
+
+  }
+);
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+loginForm.addEventListener(
+  "submit",
+  async (event) => {
+
+    event.preventDefault();
+
+    loginMessage.textContent =
+      "Signing in...";
+
+    loginMessage.className =
+      "message";
+
+    const email =
+      document.getElementById(
+        "loginEmail"
+      ).value.trim();
+
+    const password =
+      document.getElementById(
+        "loginPassword"
+      ).value;
+
+    const {
+      error
+    } =
+      await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+    if (error) {
+
+      loginMessage.textContent =
+        error.message;
+
+      loginMessage.className =
+        "message error";
+
+      return;
+    }
+
+    loginMessage.textContent =
+      "";
+
+    showAdmin();
+
+  }
+);
+
+
+/* =========================================================
+   SHOW ADMIN
+   ========================================================= */
+
+async function showAdmin() {
+
+  loginScreen.style.display =
+    "none";
+
+  adminApp.style.display =
+    "block";
+
+  await loadProducts();
+
+}
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+async function logout() {
+
+  await supabaseClient.auth.signOut();
+
+  adminApp.style.display =
+    "none";
+
+  loginScreen.style.display =
+    "flex";
+
+}
+
+
+/* =========================================================
+   LOAD PRODUCTS
+   ========================================================= */
+
+async function loadProducts() {
+
+  const container =
+    document.getElementById(
+      "productsContainer"
+    );
+
+  container.innerHTML =
+    `<div class="empty">
+      Loading products...
+    </div>`;
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("products")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+  if (error) {
+
+    container.innerHTML =
+      `<div class="empty">
+        Error loading products:<br><br>
+        ${escapeHtml(error.message)}
+      </div>`;
+
+    return;
+  }
+
+  if (!data || !data.length) {
+
+    container.innerHTML =
+      `<div class="empty">
+        No products yet.<br><br>
+        Click <strong>+ Add Product</strong>
+        to create your first product.
+      </div>`;
+
+    return;
+  }
+
+  const rows =
+    data.map(
+      product => {
+
+        return `
+          <tr>
+
+            <td>
+              <img
+                id="thumb-${product.id}"
+                class="product-thumb"
+                src=""
+                alt=""
+              >
+            </td>
+
+            <td>
+
+              <div class="product-name">
+                ${escapeHtml(product.name || "")}
+              </div>
+
+              <div class="product-sku">
+                ${escapeHtml(product.sku || "")}
+              </div>
+
+            </td>
+
+            <td>
+              ${formatPrice(
+                product.price,
+                product.currency
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                product.category || ""
+              )}
+            </td>
+
+            <td>
+              ${Number(product.stock || 0)}
+            </td>
+
+            <td>
+
+              <span
+                class="status ${
+                  product.status === "active"
+                    ? "active"
+                    : "draft"
+                }"
+              >
+                ${escapeHtml(
+                  product.status || "draft"
+                )}
+              </span>
+
+            </td>
+
+            <td>
+
+              <button
+                class="action-btn"
+                onclick="editProduct('${product.id}')"
+              >
+                Edit
+              </button>
+
+              <button
+                class="action-btn delete-btn"
+                onclick="deleteProduct('${product.id}')"
+              >
+                Delete
+              </button>
+
+            </td>
+
+          </tr>
+        `;
+      }
+    ).join("");
+
+
+  container.innerHTML = `
+    <div class="table-wrap">
+
+      <table class="products-table">
+
+        <thead>
+
+          <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Stock</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+          ${rows}
+        </tbody>
+
+      </table>
+
+    </div>
+  `;
+
+
+  /* LOAD FIRST IMAGE */
+
+  for (const product of data) {
+
+    const {
+      data: images
+    } =
+      await supabaseClient
+        .from("product_images")
+        .select("image_url")
+        .eq(
+          "product_id",
+          product.id
+        )
+        .order(
+          "sort_order",
+          {
+            ascending: true
+          }
+        )
+        .limit(1);
+
+    const img =
+      document.getElementById(
+        `thumb-${product.id}`
+      );
+
+    if (
+      img &&
+      images &&
+      images.length
+    ) {
+      img.src =
+        images[0].image_url;
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   OPEN FORM
+   ========================================================= */
+
+function openProductForm() {
+
+  document.getElementById(
+    "productsSection"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "formSection"
+  ).style.display =
+    "block";
+
+  document
+    .getElementById(
+      "productFormPanel"
+    )
+    .classList.add("show");
+
+  document.getElementById(
+    "formTitle"
+  ).textContent =
+    "Add Product";
+
+  editingProductId =
+    null;
+
+  document.getElementById(
+    "editingProductId"
+  ).value =
+    "";
+
+  productForm.reset();
+
+  document.getElementById(
+    "productCurrency"
+  ).value =
+    "VND";
+
+  document.getElementById(
+    "productStock"
+  ).value =
+    "0";
+
+  document.getElementById(
+    "productActive"
+  ).checked =
+    true;
+
+  selectedImages = [];
+
+  renderImagePreview();
+
+  clearAdminMessage();
+
+}
+
+
+/* =========================================================
+   CLOSE FORM
+   ========================================================= */
+
+function closeProductForm() {
+
+  document.getElementById(
+    "formSection"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "productsSection"
+  ).style.display =
+    "block";
+
+  selectedImages = [];
+
+  editingProductId =
+    null;
+
+  renderImagePreview();
+
+  clearAdminMessage();
+
+  loadProducts();
+
+}
+
+
+/* =========================================================
+   IMAGE SELECT
+   ========================================================= */
+
+imageInput.addEventListener(
+  "change",
+  () => {
+
+    selectedImages =
+      Array.from(
+        imageInput.files || []
+      );
+
+    renderImagePreview();
+
+  }
+);
+
+
+/* =========================================================
+   IMAGE PREVIEW
+   ========================================================= */
+
+function renderImagePreview() {
+
+  imagePreview.innerHTML =
+    "";
+
+  selectedImages.forEach(
+    (file, index) => {
+
+      const url =
+        URL.createObjectURL(file);
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+      item.className =
+        "preview-item";
+
+      item.innerHTML = `
+        <img
+          src="${url}"
+          alt=""
+        >
+
+        <span class="preview-number">
+          ${index + 1}
+        </span>
+      `;
+
+      imagePreview.appendChild(
+        item
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   SAVE PRODUCT
+   ========================================================= */
+
+productForm.addEventListener(
+  "submit",
+  async (event) => {
+
+    event.preventDefault();
+
+    const saveButton =
+      document.getElementById(
+        "saveProductBtn"
+      );
+
+    saveButton.disabled =
+      true;
+
+    saveButton.textContent =
+      "Saving...";
+
+    clearAdminMessage();
+
+
+    try {
+
+      const name =
+        document.getElementById(
+          "productName"
+        ).value.trim();
+
+      const sku =
+        document.getElementById(
+          "productSku"
+        ).value.trim();
+
+      const price =
+        Number(
+          document.getElementById(
+            "productPrice"
+          ).value
+        );
+
+      const currency =
+        document.getElementById(
+          "productCurrency"
+        ).value;
+
+      const category =
+        document.getElementById(
+          "productCategory"
+        ).value.trim();
+
+      const description =
+        document.getElementById(
+          "productDescription"
+        ).value.trim();
+
+      const colors =
+        parseList(
+          document.getElementById(
+            "productColors"
+          ).value
+        );
+
+      const sizes =
+        parseList(
+          document.getElementById(
+            "productSizes"
+          ).value
+        );
+
+      const stock =
+        Number(
+          document.getElementById(
+            "productStock"
+          ).value || 0
+        );
+
+      const status =
+        document.getElementById(
+          "productActive"
+        ).checked
+          ? "active"
+          : "draft";
+
+
+      if (!name) {
+        throw new Error(
+          "Product name is required."
+        );
+      }
+
+      if (!sku) {
+        throw new Error(
+          "SKU is required."
+        );
+      }
+
+      if (!Number.isFinite(price)) {
+        throw new Error(
+          "Please enter a valid price."
+        );
+      }
+
+
+      /* -----------------------------------------------
+         CREATE / UPDATE PRODUCT
+         ----------------------------------------------- */
+
+      let product;
+
+
+      if (editingProductId) {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .from("products")
+            .update({
+              sku,
+              name,
+              price,
+              currency,
+              category,
+              description,
+              colors,
+              sizes,
+              stock,
+              status,
+              updated_at:
+                new Date().toISOString()
+            })
+            .eq(
+              "id",
+              editingProductId
+            )
+            .select()
+            .single();
+
+        if (error) {
+          throw error;
+        }
+
+        product =
+          data;
+
+      } else {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .from("products")
+            .insert({
+              sku,
+              name,
+              price,
+              currency,
+              category,
+              description,
+              colors,
+              sizes,
+              stock,
+              status
+            })
+            .select()
+            .single();
+
+        if (error) {
+          throw error;
+        }
+
+        product =
+          data;
+
+      }
+
+
+      /* -----------------------------------------------
+         UPLOAD IMAGES
+         ----------------------------------------------- */
+
+      if (
+        selectedImages.length
+      ) {
+
+        /*
+         * For editing, remove old image records first.
+         */
+
+        if (editingProductId) {
+
+          await supabaseClient
+            .from("product_images")
+            .delete()
+            .eq(
+              "product_id",
+              product.id
+            );
+
+        }
+
+
+        for (
+          let i = 0;
+          i < selectedImages.length;
+          i++
+        ) {
+
+          const file =
+            selectedImages[i];
+
+          const extension =
+            getFileExtension(
+              file.name
+            );
+
+          const safeName =
+            slugify(
+              name
+            );
+
+          const filePath =
+            `products/${product.id}/${Date.now()}-${i + 1}-${safeName}.${extension}`;
+
+
+          /* STORAGE UPLOAD */
+
+          const {
+            error:
+              uploadError
+          } =
+            await supabaseClient
+              .storage
+              .from("product-images")
+              .upload(
+                filePath,
+                file,
+                {
+                  cacheControl:
+                    "3600",
+                  upsert:
+                    false,
+                  contentType:
+                    file.type
+                }
+              );
+
+          if (uploadError) {
+            throw uploadError;
+          }
+
+
+          /* PUBLIC URL */
+
+          const {
+            data:
+              publicData
+          } =
+            supabaseClient
+              .storage
+              .from(
+                "product-images"
+              )
+              .getPublicUrl(
+                filePath
+              );
+
+          const imageUrl =
+            publicData.publicUrl;
+
+
+          /* DATABASE RECORD */
+
+          const {
+            error:
+              imageError
+          } =
+            await supabaseClient
+              .from(
+                "product_images"
+              )
+              .insert({
+                product_id:
+                  product.id,
+                image_url:
+                  imageUrl,
+                sort_order:
+                  i
+              });
+
+          if (imageError) {
+            throw imageError;
+          }
+
+        }
+
+      }
+
+
+      showAdminMessage(
+        editingProductId
+          ? "Product updated successfully."
+          : "Product created successfully.",
+        "success"
+      );
+
+
+      setTimeout(
+        () => {
+          closeProductForm();
+        },
+        900
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        "ADEN ADMIN ERROR:",
+        error
+      );
+
+      showAdminMessage(
+        error.message ||
+          "Something went wrong.",
+        "error"
+      );
+
+    }
+
+
+    saveButton.disabled =
+      false;
+
+    saveButton.textContent =
+      "Save Product";
+
+  }
+);
+
+
+/* =========================================================
+   EDIT PRODUCT
+   ========================================================= */
+
+async function editProduct(
+  productId
+) {
+
+  const {
+    data: product,
+    error
+  } =
+    await supabaseClient
+      .from("products")
+      .select("*")
+      .eq(
+        "id",
+        productId
+      )
+      .single();
+
+  if (error) {
+
+    alert(
+      error.message
+    );
+
+    return;
+  }
+
+
+  openProductForm();
+
+  editingProductId =
+    productId;
+
+  document.getElementById(
+    "editingProductId"
+  ).value =
+    productId;
+
+  document.getElementById(
+    "formTitle"
+  ).textContent =
+    "Edit Product";
+
+
+  document.getElementById(
+    "productName"
+  ).value =
+    product.name || "";
+
+  document.getElementById(
+    "productSku"
+  ).value =
+    product.sku || "";
+
+  document.getElementById(
+    "productPrice"
+  ).value =
+    product.price || "";
+
+  document.getElementById(
+    "productCurrency"
+  ).value =
+    product.currency || "VND";
+
+  document.getElementById(
+    "productCategory"
+  ).value =
+    product.category || "";
+
+  document.getElementById(
+    "productDescription"
+  ).value =
+    product.description || "";
+
+  document.getElementById(
+    "productColors"
+  ).value =
+    Array.isArray(product.colors)
+      ? product.colors.join(", ")
+      : "";
+
+  document.getElementById(
+    "productSizes"
+  ).value =
+    Array.isArray(product.sizes)
+      ? product.sizes.join(", ")
+      : "";
+
+  document.getElementById(
+    "productStock"
+  ).value =
+    product.stock || 0;
+
+  document.getElementById(
+    "productActive"
+  ).checked =
+    product.status === "active";
+
+
+  /* Existing images */
+
+  const {
+    data: images
+  } =
+    await supabaseClient
+      .from("product_images")
+      .select("*")
+      .eq(
+        "product_id",
+        productId
+      )
+      .order(
+        "sort_order",
+        {
+          ascending: true
+        }
+      );
+
+
+  imagePreview.innerHTML =
+    "";
+
+  if (
+    images &&
+    images.length
+  ) {
+
+    images.forEach(
+      (image, index) => {
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+        item.className =
+          "preview-item";
+
+        item.innerHTML = `
+          <img
+            src="${escapeHtml(
+              image.image_url
+            )}"
+            alt=""
+          >
+
+          <span class="preview-number">
+            ${index + 1}
+          </span>
+        `;
+
+        imagePreview.appendChild(
+          item
+        );
+
+      }
+    );
+
+  }
+
+
+  selectedImages =
+    [];
+
+}
+
+
+/* =========================================================
+   DELETE PRODUCT
+   ========================================================= */
+
+async function deleteProduct(
+  productId
+) {
+
+  const confirmed =
+    confirm(
+      "Delete this product?"
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("products")
+      .delete()
+      .eq(
+        "id",
+        productId
+      );
+
+
+  if (error) {
+
+    alert(
+      error.message
+    );
+
+    return;
+  }
+
+
+  await loadProducts();
+
+}
+
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+function parseList(
+  value
+) {
+
+  return value
+    .split(",")
+    .map(
+      item =>
+        item.trim()
+    )
+    .filter(
+      Boolean
+    );
+
+}
+
+
+function getFileExtension(
+  filename
+) {
+
+  const parts =
+    filename.split(".");
+
+  return (
+    parts[
+      parts.length - 1
+    ] || "jpg"
+  )
+    .toLowerCase();
+
+}
+
+
+function slugify(
+  value
+) {
+
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
+    .replace(
+      /[^a-z0-9]+/g,
+      "-"
+    )
+    .replace(
+      /^-+|-+$/g,
+      ""
+    );
+
+}
+
+
+function formatPrice(
+  price,
+  currency = "VND"
+) {
+
+  const number =
+    Number(price || 0);
+
+  return new Intl.NumberFormat(
+    "vi-VN"
+  ).format(number)
+    + " "
+    + currency;
+
+}
+
+
+function escapeHtml(
+  value
+) {
+
+  return String(
+    value ?? ""
+  )
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+function showAdminMessage(
+  text,
+  type
+) {
+
+  const el =
+    document.getElementById(
+      "adminMessage"
+    );
+
+  el.textContent =
+    text;
+
+  el.className =
+    "admin-message " +
+    type;
+
+}
+
+
+function clearAdminMessage() {
+
+  const el =
+    document.getElementById(
+      "adminMessage"
+    );
+
+  el.textContent =
+    "";
+
+  el.className =
+    "admin-message";
+
+}
+
+
+function showProducts() {
+
+  document.getElementById(
+    "formSection"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "productsSection"
+  ).style.display =
+    "block";
+
+  loadProducts();
+
+}
+
+</script>
+
+</body>
+</html>
