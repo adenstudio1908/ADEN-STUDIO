@@ -1129,15 +1129,628 @@
     .onclick = () => {
 
       if (!cart.length) {
-        alert("YOUR BAG IS EMPTY");
-        return;
+  alert("YOUR BAG IS EMPTY");
+  return;
+}
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+const checkout = document.createElement("div");
+
+checkout.id = "adenCheckout";
+
+checkout.innerHTML = `
+  <div class="aden-checkout-overlay"></div>
+
+  <div class="aden-checkout-panel">
+
+    <button class="aden-checkout-close" type="button">
+      ×
+    </button>
+
+    <div class="aden-checkout-title">
+      CHECKOUT
+    </div>
+
+    <div class="aden-checkout-layout">
+
+      <div class="aden-checkout-form">
+
+        <div class="aden-checkout-section-title">
+          CUSTOMER INFORMATION
+        </div>
+
+        <label>
+          FULL NAME *
+          <input
+            id="checkoutName"
+            type="text"
+            required
+            placeholder="Full name">
+        </label>
+
+        <label>
+          EMAIL *
+          <input
+            id="checkoutEmail"
+            type="email"
+            required
+            placeholder="Email address">
+        </label>
+
+        <label>
+          PHONE *
+          <input
+            id="checkoutPhone"
+            type="tel"
+            required
+            placeholder="Phone number">
+        </label>
+
+        <label>
+          ADDRESS *
+          <input
+            id="checkoutAddress"
+            type="text"
+            required
+            placeholder="Street address">
+        </label>
+
+        <div class="aden-checkout-row">
+
+          <label>
+            CITY *
+            <input
+              id="checkoutCity"
+              type="text"
+              required
+              placeholder="City">
+          </label>
+
+          <label>
+            COUNTRY *
+            <input
+              id="checkoutCountry"
+              type="text"
+              required
+              placeholder="Country">
+          </label>
+
+        </div>
+
+        <label>
+          NOTES
+          <textarea
+            id="checkoutNotes"
+            rows="4"
+            placeholder="Order notes (optional)"></textarea>
+        </label>
+
+      </div>
+
+
+      <div class="aden-checkout-summary">
+
+        <div class="aden-checkout-section-title">
+          ORDER SUMMARY
+        </div>
+
+        <div class="aden-checkout-products">
+          ${cart.map(item => `
+            <div class="aden-checkout-product">
+
+              <img
+                src="${item.image}"
+                alt="${item.name}">
+
+              <div class="aden-checkout-product-info">
+
+                <strong>
+                  ${item.name}
+                </strong>
+
+                <span>
+                  ${item.color} / ${item.size}
+                </span>
+
+                <span>
+                  QTY ${item.quantity}
+                </span>
+
+                <span>
+                  ${formatPrice(
+                    item.price * item.quantity
+                  )}
+                </span>
+
+              </div>
+
+            </div>
+          `).join("")}
+        </div>
+
+        <div class="aden-checkout-total-row">
+          <span>SUBTOTAL</span>
+          <strong>
+            ${formatPrice(
+              cart.reduce(
+                (sum, item) =>
+                  sum + item.price * item.quantity,
+                0
+              )
+            )}
+          </strong>
+        </div>
+
+        <div class="aden-checkout-total-row">
+          <span>SHIPPING</span>
+          <strong>FREE</strong>
+        </div>
+
+        <div class="aden-checkout-total-row final">
+          <span>TOTAL</span>
+          <strong>
+            ${formatPrice(
+              cart.reduce(
+                (sum, item) =>
+                  sum + item.price * item.quantity,
+                0
+              )
+            )}
+          </strong>
+        </div>
+
+        <button
+          class="aden-place-order"
+          type="button">
+          PLACE ORDER
+        </button>
+
+        <div
+          class="aden-checkout-message"
+          aria-live="polite">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+`;
+
+document.body.appendChild(checkout);
+
+
+/* =========================================================
+   CHECKOUT STYLES
+========================================================= */
+
+if (!document.getElementById("adenCheckoutStyles")) {
+
+  const style = document.createElement("style");
+
+  style.id = "adenCheckoutStyles";
+
+  style.textContent = `
+    #adenCheckout {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      font-family: inherit;
+    }
+
+    .aden-checkout-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+    }
+
+    .aden-checkout-panel {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(1100px, 94vw);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: #f4f1e9;
+      color: #111;
+      padding: 42px;
+      box-sizing: border-box;
+    }
+
+    .aden-checkout-close {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      border: 0;
+      background: transparent;
+      font-size: 30px;
+      cursor: pointer;
+      color: #111;
+    }
+
+    .aden-checkout-title {
+      font-family: Georgia, serif;
+      font-size: 42px;
+      margin-bottom: 38px;
+    }
+
+    .aden-checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+    }
+
+    .aden-checkout-section-title {
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+
+    .aden-checkout-form label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+
+    .aden-checkout-form input,
+    .aden-checkout-form textarea {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      padding: 14px 0;
+      border: 0;
+      border-bottom: 1px solid #999;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .aden-checkout-form textarea {
+      resize: vertical;
+    }
+
+    .aden-checkout-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .aden-checkout-product {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #d0ccc3;
+    }
+
+    .aden-checkout-product img {
+      width: 76px;
+      height: 96px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .aden-checkout-product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 11px;
+      letter-spacing: .5px;
+    }
+
+    .aden-checkout-product-info strong {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .aden-checkout-total-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 0;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+    }
+
+    .aden-checkout-total-row.final {
+      border-top: 1px solid #111;
+      margin-top: 8px;
+      padding-top: 20px;
+      font-size: 13px;
+    }
+
+    .aden-place-order {
+      width: 100%;
+      margin-top: 25px;
+      padding: 18px;
+      border: 1px solid #111;
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+
+    .aden-place-order:disabled {
+      opacity: .5;
+      cursor: wait;
+    }
+
+    .aden-checkout-message {
+      margin-top: 15px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media(max-width: 750px) {
+
+      .aden-checkout-panel {
+        padding: 30px 22px;
       }
 
-      alert(
-        "CHECKOUT\n\n" +
-        "The checkout page will be connected next."
+      .aden-checkout-title {
+        font-size: 32px;
+      }
+
+      .aden-checkout-layout {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .aden-checkout-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+}
+
+
+/* =========================================================
+   CLOSE CHECKOUT
+========================================================= */
+
+const closeCheckout = () => {
+  checkout.remove();
+};
+
+checkout
+  .querySelector(".aden-checkout-close")
+  .onclick = closeCheckout;
+
+checkout
+  .querySelector(".aden-checkout-overlay")
+  .onclick = closeCheckout;
+
+
+/* =========================================================
+   PLACE ORDER
+========================================================= */
+
+checkout
+  .querySelector(".aden-place-order")
+  .onclick = async () => {
+
+    const name =
+      checkout.querySelector("#checkoutName").value.trim();
+
+    const email =
+      checkout.querySelector("#checkoutEmail").value.trim();
+
+    const phone =
+      checkout.querySelector("#checkoutPhone").value.trim();
+
+    const address =
+      checkout.querySelector("#checkoutAddress").value.trim();
+
+    const city =
+      checkout.querySelector("#checkoutCity").value.trim();
+
+    const country =
+      checkout.querySelector("#checkoutCountry").value.trim();
+
+    const notes =
+      checkout.querySelector("#checkoutNotes").value.trim();
+
+    const message =
+      checkout.querySelector(".aden-checkout-message");
+
+    const button =
+      checkout.querySelector(".aden-place-order");
+
+
+    if (
+      !name ||
+      !email ||
+      !phone ||
+      !address ||
+      !city ||
+      !country
+    ) {
+      message.textContent =
+        "Please complete all required fields.";
+
+      return;
+    }
+
+
+    button.disabled = true;
+    button.textContent = "PROCESSING...";
+
+    message.textContent = "";
+
+
+    try {
+
+      /* =====================================================
+         CALCULATE ORDER
+      ===================================================== */
+
+      const subtotal =
+        cart.reduce(
+          (sum, item) =>
+            sum + item.price * item.quantity,
+          0
+        );
+
+      const shippingFee = 0;
+
+      const total =
+        subtotal + shippingFee;
+
+      const currency = "VND";
+
+
+      /* =====================================================
+         GENERATE IDS
+      ===================================================== */
+
+      const customerId =
+        crypto.randomUUID();
+
+      const orderId =
+        crypto.randomUUID();
+
+      const orderNumber =
+        "ADEN-" +
+        Date.now().toString(36).toUpperCase();
+
+
+      /* =====================================================
+         CREATE CUSTOMER
+      ===================================================== */
+
+      const {
+        error: customerError
+      } =
+        await supabaseClient
+          .from("customers")
+          .insert({
+            id: customerId,
+            full_name: name,
+            email: email,
+            phone: phone,
+            address: address,
+            city: city,
+            country: country
+          });
+
+      if (customerError) {
+        throw customerError;
+      }
+
+
+      /* =====================================================
+         CREATE ORDER
+      ===================================================== */
+
+      const {
+        error: orderError
+      } =
+        await supabaseClient
+          .from("orders")
+          .insert({
+            id: orderId,
+            order_number: orderNumber,
+            customer_id: customerId,
+            status: "pending",
+            payment_status: "unpaid",
+            subtotal: subtotal,
+            shipping_fee: shippingFee,
+            total: total,
+            currency: currency,
+            shipping_name: name,
+            shipping_phone: phone,
+            shipping_address: address,
+            shipping_city: city,
+            shipping_country: country,
+            notes: notes
+          });
+
+      if (orderError) {
+        throw orderError;
+      }
+
+
+      /* =====================================================
+         CREATE ORDER ITEMS
+      ===================================================== */
+
+      const orderItems =
+        cart.map(item => ({
+          id: crypto.randomUUID(),
+          order_id: orderId,
+          product_id: item.id,
+          product_name: item.name,
+          color: item.color,
+          size: item.size,
+          quantity: item.quantity,
+          unit_price: item.price,
+          total_price:
+            item.price * item.quantity
+        }));
+
+
+      const {
+        error: itemsError
+      } =
+        await supabaseClient
+          .from("order_items")
+          .insert(orderItems);
+
+      if (itemsError) {
+        throw itemsError;
+      }
+
+
+      /* =====================================================
+         SUCCESS
+      ===================================================== */
+
+      cart = [];
+
+      saveCart();
+      renderCart();
+
+      button.textContent = "ORDER CONFIRMED";
+
+      message.innerHTML = `
+        <strong>Thank you for your order.</strong><br><br>
+        ORDER NUMBER: ${orderNumber}<br>
+        We have received your order and will contact you shortly.
+      `;
+
+
+      setTimeout(() => {
+        checkout.remove();
+        closeCart();
+      }, 4000);
+
+
+    } catch (error) {
+
+      console.error(
+        "ADEN checkout error:",
+        error
       );
-    };
+
+      button.disabled = false;
+      button.textContent = "PLACE ORDER";
+
+      message.textContent =
+        "We could not place your order. Please try again.";
+    }
+
+  };
+};
 
   /* =========================================================
      BAG BUTTON
