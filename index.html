@@ -167,8 +167,27 @@
 </div>
 
 <script>
-window.ADEN_HERO = ["assets/images/look-01/01.webp", "assets/images/look-02/01.webp", "assets/images/look-03/01.webp"];
+  window.ADEN_HERO = [
+    "assets/images/look-01/01.webp",
+    "assets/images/look-02/01.webp",
+    "assets/images/look-03/01.webp"
+  ];
+
+  window.ADEN_PRODUCTS = [
+    "assets/images/look-01/01.webp",
+    "assets/images/look-02/01.webp",
+    "assets/images/look-03/01.webp",
+    "assets/images/look-04/01.webp",
+    "assets/images/look-05/01.webp",
+    "assets/images/look-06/01.webp",
+    "assets/images/look-07/01.webp",
+    "assets/images/look-08/01.webp"
+  ];
 </script>
+
+<!-- Supabase must load BEFORE script.js -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="script.js"></script>
 </body>
 </html>
