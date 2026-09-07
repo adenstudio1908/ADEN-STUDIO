@@ -1,20 +1,188 @@
 (async () => {
   const hero = window.ADEN_HERO || [];
-  let rawProducts = window.ADEN_PRODUCTS || [];
+
+  /* =========================================================
+     SUPABASE
+  ========================================================= */
+
+  const SUPABASE_URL =
+    "https://vtfodoxsulmnhaahplwf.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_G8TiKAJauItRaxCunDtSzQ_19OZUyOT";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+  /* =========================================================
+     PRODUCT DATA FROM SUPABASE
+  ========================================================= */
+
+  let rawProducts = [];
 
   try {
-    const response = await fetch("products.json");
-    const data = await response.json();
 
-    if (Array.isArray(data.products) && data.products.length) {
-      rawProducts = data.products;
+    const {
+      data: supabaseProducts,
+      error: productsError
+    } =
+      await supabaseClient
+        .from("products")
+        .select("*")
+        .eq("status", "active")
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+
+    if (productsError) {
+      throw productsError;
     }
+
+
+    const productIds =
+      (supabaseProducts || [])
+        .map(product => product.id);
+
+
+    let imageRows = [];
+
+
+    if (productIds.length) {
+
+      const {
+        data: supabaseImages,
+        error: imagesError
+      } =
+        await supabaseClient
+          .from("product_images")
+          .select(
+            "product_id, image_url, sort_order"
+          )
+          .in(
+            "product_id",
+            productIds
+          )
+          .order(
+            "sort_order",
+            {
+              ascending: true
+            }
+          );
+
+
+      if (imagesError) {
+        throw imagesError;
+      }
+
+
+      imageRows =
+        supabaseImages || [];
+
+    }
+
+
+    /* Attach images to products */
+
+    const imagesByProduct = {};
+
+
+    imageRows.forEach(
+      image => {
+
+        if (
+          !imagesByProduct[
+            image.product_id
+          ]
+        ) {
+          imagesByProduct[
+            image.product_id
+          ] = [];
+        }
+
+
+        imagesByProduct[
+          image.product_id
+        ].push(
+          image.image_url
+        );
+
+      }
+    );
+
+
+    rawProducts =
+      (supabaseProducts || [])
+        .map(
+          product => ({
+            ...product,
+
+            images:
+              imagesByProduct[
+                product.id
+              ] || []
+          })
+        );
+
+
+    console.log(
+      "ADEN: Products loaded from Supabase",
+      rawProducts
+    );
+
+
   } catch (error) {
-    console.warn("ADEN products.json could not be loaded:", error);
+
+    console.error(
+      "ADEN Supabase products error:",
+      error
+    );
+
+
+    /* Fallback to products.json */
+
+    try {
+
+      const response =
+        await fetch(
+          "products.json"
+        );
+
+      const data =
+        await response.json();
+
+
+      if (
+        Array.isArray(
+          data.products
+        )
+      ) {
+        rawProducts =
+          data.products;
+      }
+
+    } catch (fallbackError) {
+
+      console.warn(
+        "ADEN products.json fallback failed:",
+        fallbackError
+      );
+
+    }
+
   }
+
 
   const fallback =
     "assets/images/editorial/editorial-001.webp";
+
 
   /* =========================================================
      PRODUCT DATA
