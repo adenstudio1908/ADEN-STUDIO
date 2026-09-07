@@ -17,7 +17,6 @@
       SUPABASE_KEY
     );
 
-
   /* =========================================================
      PRODUCT DATA FROM SUPABASE
   ========================================================= */
@@ -25,48 +24,44 @@
   let rawProducts = [];
 
   try {
-
     const {
       data: supabaseProducts,
       error: productsError
-    } =
-      await supabaseClient
-        .from("products")
-        .select("*")
-        .eq("status", "active")
-        .order("created_at", {
-          ascending: false
-        });
+    } = await supabaseClient
+      .from("products")
+      .select("*")
+      .eq("status", "active")
+      .order("created_at", {
+        ascending: false
+      });
 
     if (productsError) {
       throw productsError;
     }
 
-
     const productIds =
-      (supabaseProducts || [])
-        .map(product => product.id);
+      (supabaseProducts || []).map(
+        product => product.id
+      );
 
     let imageRows = [];
 
     if (productIds.length) {
-
       const {
         data: supabaseImages,
         error: imagesError
-      } =
-        await supabaseClient
-          .from("product_images")
-          .select(
-            "product_id, image_url, sort_order"
-          )
-          .in(
-            "product_id",
-            productIds
-          )
-          .order("sort_order", {
-            ascending: true
-          });
+      } = await supabaseClient
+        .from("product_images")
+        .select(
+          "product_id, image_url, sort_order"
+        )
+        .in(
+          "product_id",
+          productIds
+        )
+        .order("sort_order", {
+          ascending: true
+        });
 
       if (imagesError) {
         throw imagesError;
@@ -76,11 +71,9 @@
         supabaseImages || [];
     }
 
-
     const imagesByProduct = {};
 
     imageRows.forEach(image => {
-
       if (!imagesByProduct[image.product_id]) {
         imagesByProduct[image.product_id] = [];
       }
@@ -88,9 +81,7 @@
       imagesByProduct[image.product_id].push(
         image.image_url
       );
-
     });
-
 
     rawProducts =
       (supabaseProducts || []).map(product => ({
@@ -99,25 +90,20 @@
           imagesByProduct[product.id] || []
       }));
 
-
     console.log(
       "ADEN: Products loaded from Supabase",
       rawProducts
     );
 
-
   } catch (error) {
-
     console.error(
       "ADEN Supabase products error:",
       error
     );
 
-
     /* Fallback to products.json */
 
     try {
-
       const response =
         await fetch("products.json");
 
@@ -133,193 +119,15 @@
       }
 
     } catch (fallbackError) {
-
       console.warn(
         "ADEN products.json fallback failed:",
         fallbackError
       );
-
     }
-
   }
-
 
   const fallback =
     "assets/images/editorial/editorial-001.webp";
-
-  /* =========================================================
-     PRODUCT DATA
-  ========================================================= */
-
-  function normalizeProducts(data) {
-    );
-
-
-  /* =========================================================
-     PRODUCT DATA FROM SUPABASE
-  ========================================================= */
-
-  let rawProducts = [];
-
-  try {
-
-    const {
-      data: supabaseProducts,
-      error: productsError
-    } =
-      await supabaseClient
-        .from("products")
-        .select("*")
-        .eq("status", "active")
-        .order(
-          "created_at",
-          {
-            ascending: false
-          }
-        );
-
-
-    if (productsError) {
-      throw productsError;
-    }
-
-
-    const productIds =
-      (supabaseProducts || [])
-        .map(product => product.id);
-
-
-    let imageRows = [];
-
-
-    if (productIds.length) {
-
-      const {
-        data: supabaseImages,
-        error: imagesError
-      } =
-        await supabaseClient
-          .from("product_images")
-          .select(
-            "product_id, image_url, sort_order"
-          )
-          .in(
-            "product_id",
-            productIds
-          )
-          .order(
-            "sort_order",
-            {
-              ascending: true
-            }
-          );
-
-
-      if (imagesError) {
-        throw imagesError;
-      }
-
-
-      imageRows =
-        supabaseImages || [];
-
-    }
-
-
-    /* Attach images to products */
-
-    const imagesByProduct = {};
-
-
-    imageRows.forEach(
-      image => {
-
-        if (
-          !imagesByProduct[
-            image.product_id
-          ]
-        ) {
-          imagesByProduct[
-            image.product_id
-          ] = [];
-        }
-
-
-        imagesByProduct[
-          image.product_id
-        ].push(
-          image.image_url
-        );
-
-      }
-    );
-
-
-    rawProducts =
-      (supabaseProducts || [])
-        .map(
-          product => ({
-            ...product,
-
-            images:
-              imagesByProduct[
-                product.id
-              ] || []
-          })
-        );
-
-
-    console.log(
-      "ADEN: Products loaded from Supabase",
-      rawProducts
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "ADEN Supabase products error:",
-      error
-    );
-
-
-    /* Fallback to products.json */
-
-    try {
-
-      const response =
-        await fetch(
-          "products.json"
-        );
-
-      const data =
-        await response.json();
-
-
-      if (
-        Array.isArray(
-          data.products
-        )
-      ) {
-        rawProducts =
-          data.products;
-      }
-
-    } catch (fallbackError) {
-
-      console.warn(
-        "ADEN products.json fallback failed:",
-        fallbackError
-      );
-
-    }
-
-  }
-
-
-  const fallback =
-    "assets/images/editorial/editorial-001.webp";
-
 
   /* =========================================================
      PRODUCT DATA
@@ -328,28 +136,44 @@
   function normalizeProducts(data) {
     let list = data;
 
-    // Support { products: [...] }
-    if (!Array.isArray(list) && Array.isArray(list.products)) {
+    if (
+      !Array.isArray(list) &&
+      Array.isArray(list.products)
+    ) {
       list = list.products;
     }
 
-    if (!Array.isArray(list)) return [];
+    if (!Array.isArray(list)) {
+      return [];
+    }
 
     return list.map((p, index) => {
+
       if (typeof p === "string") {
         return {
           id: `look-${index + 1}`,
           name: `ADEN LOOK ${String(index + 1).padStart(2, "0")}`,
           price: 490000,
-          colors: ["Khaki", "Burgundy", "Black"],
-          sizes: ["Free Size"],
-          images: [p],
+          colors: [
+            "Khaki",
+            "Burgundy",
+            "Black"
+          ],
+          sizes: [
+            "Free Size"
+          ],
+          images: [
+            p
+          ],
           description: ""
         };
       }
 
       return {
-        id: p.id || `aden-${index + 1}`,
+        id:
+          p.id ||
+          `aden-${index + 1}`,
+
         name:
           p.name ||
           p.title ||
@@ -358,7 +182,7 @@
         price:
           typeof p.price === "number"
             ? p.price
-            : 490000,
+            : Number(p.price) || 490000,
 
         colors:
           Array.isArray(p.colors)
@@ -382,7 +206,8 @@
     });
   }
 
-  let products = normalizeProducts(rawProducts);
+  let products =
+    normalizeProducts(rawProducts);
 
   /* =========================================================
      FALLBACK PRODUCT
@@ -391,10 +216,21 @@
   if (!products.length) {
     products = [{
       id: "aden-001",
+
       name: "ADEN PRODUCT 001",
+
       price: 490000,
-      colors: ["Khaki", "Burgundy", "Black"],
-      sizes: ["Free Size"],
+
+      colors: [
+        "Khaki",
+        "Burgundy",
+        "Black"
+      ],
+
+      sizes: [
+        "Free Size"
+      ],
+
       images: [
         "assets/images/products/aden-001/RABIT1.jpg",
         "assets/images/products/aden-001/RABIT2.jpg",
@@ -406,6 +242,7 @@
         "assets/images/products/aden-001/RABIT8.jpg",
         "assets/images/products/aden-001/RABIT9.jpg"
       ],
+
       description:
         "Contemporary ribbed long-sleeve henley with graphic typography and cross detail."
     }];
