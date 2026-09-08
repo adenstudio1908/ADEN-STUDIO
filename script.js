@@ -8,12 +8,19 @@
   const slides = document.getElementById("heroSlides");
   const heroCount = document.querySelector(".hero-count");
   const heroFiles = hero.length ? hero : [fallback];
-  heroFiles.forEach((src,i) => {
-    const s = document.createElement("div");
-    s.className = "hero-slide" + (i===0 ? " active" : "");
-    s.style.backgroundImage = `url("${src}")`;
-    slides.appendChild(s);
-  });
+ heroFiles.forEach((src,i) => {
+  const s = document.createElement("div");
+  s.className = "hero-slide" + (i===0 ? " active" : "");
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = "ADEN Menswear";
+  img.loading = i === 0 ? "eager" : "lazy";
+
+  s.appendChild(img);
+  slides.appendChild(s);
+});
+ 
   let hi=0;
   if(heroFiles.length>1){
     setInterval(()=>{
