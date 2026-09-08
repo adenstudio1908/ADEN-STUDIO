@@ -680,3 +680,152 @@ footer{background:#0b0b0b;color:#888;padding:30px 3.5vw 23px;display:grid;grid-t
   display: inline-block !important;
   z-index: 5 !important;
 }
+/* =========================================
+   ADEN — VERTICAL EDITORIAL HERO
+   ========================================= */
+
+.hero {
+  height: calc(100vh - 72px);
+  min-height: 680px;
+  background: #111;
+  overflow: hidden;
+}
+
+.hero-media,
+.hero-slides {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  background-color: #111;
+  background-repeat: no-repeat;
+  background-position: 63% center;
+  background-size: auto 94%;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* Soft editorial lighting */
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.82) 0%,
+      rgba(0,0,0,.48) 22%,
+      rgba(0,0,0,.08) 48%,
+      rgba(0,0,0,.18) 72%,
+      rgba(0,0,0,.55) 100%
+    );
+}
+
+/* Left editorial typography */
+.hero-copy {
+  position: absolute;
+  left: 7.5vw;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  max-width: 560px;
+}
+
+/* Right-side navigation */
+.hero-side {
+  position: absolute;
+  right: 7vw;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+/* Slide counter */
+.hero-count {
+  position: absolute;
+  right: 8vw;
+  bottom: 30px;
+  z-index: 4;
+}
+
+/* Keep text readable */
+.hero h1,
+.hero .micro,
+.hero .tagline,
+.hero .outline-btn {
+  position: relative;
+  z-index: 4;
+}
+
+/* Desktop vertical fashion image */
+@media (min-width: 901px) {
+  .hero-slide {
+    background-size: auto 94%;
+    background-position: 63% center;
+  }
+}
+
+/* =========================================
+   MOBILE — FULL VERTICAL EDITORIAL
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .hero {
+    height: calc(100svh - 64px);
+    min-height: 620px;
+  }
+
+  .hero-slide {
+    background-size: auto 100%;
+    background-position: center top;
+  }
+
+  .hero-shade {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,.12) 0%,
+        rgba(0,0,0,.05) 35%,
+        rgba(0,0,0,.68) 72%,
+        rgba(0,0,0,.94) 100%
+      );
+  }
+
+  .hero-copy {
+    left: 24px;
+    right: 24px;
+    top: auto;
+    bottom: 70px;
+    transform: none;
+    max-width: none;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 12vw, 72px);
+    line-height: .9;
+  }
+
+  .hero .tagline {
+    font-size: 8px;
+    letter-spacing: .2em;
+  }
+
+  .hero-side {
+    display: none;
+  }
+
+  .hero-count {
+    right: 24px;
+    bottom: 24px;
+  }
+}
