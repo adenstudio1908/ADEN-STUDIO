@@ -882,33 +882,3 @@ footer{background:#0b0b0b;color:#888;padding:30px 3.5vw 23px;display:grid;grid-t
   }
 }
 
-@media (min-width: 901px) {
-
-  .hero {
-    position: relative !important;
-    overflow: hidden !important;
-    background: #0b0b0b !important;
-  }
-
-  .hero-slide {
-    position: absolute !important;
-    inset: 0 !important;
-
-    background-repeat: no-repeat !important;
-    background-color: #0b0b0b !important;
-
-    /* NEVER CROP THE FASHION IMAGE */
-    background-size: auto 90% !important;
-    background-position: 72% center !important;
-
-    transition: opacity .7s ease !important;
-  }
-
-  .hero-slide.active {
-    opacity: 1 !important;
-  }
-
-  .hero-shade {
-    pointer-events: none !important;
-  }
-}
