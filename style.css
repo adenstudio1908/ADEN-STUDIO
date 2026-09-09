@@ -828,6 +828,15 @@ footer{background:#0b0b0b;color:#888;padding:30px 3.5vw 23px;display:grid;grid-t
     right: 24px;/* ADEN HERO — IMAGE FADE */
 
 @media (min-width: 901px) {
+/* ADEN HERO — SEAMLESS EDGE FADE FINAL */
+
+@media (min-width: 901px) {
+
+  .hero {
+    position: relative !important;
+    overflow: hidden !important;
+    background: #0b0b0b !important;
+  }
 
   .hero-slide {
     position: absolute !important;
@@ -849,39 +858,67 @@ footer{background:#0b0b0b;color:#888;padding:30px 3.5vw 23px;display:grid;grid-t
 
     object-fit: contain !important;
 
-    /* Fade image into black */
-    -webkit-mask-image: linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent 12%,
-      rgba(0,0,0,.35) 22%,
-      #000 34%,
-      #000 68%,
-      rgba(0,0,0,.65) 82%,
-      transparent 94%,
-      transparent 100%
-    );
-
-    mask-image: linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent 12%,
-      rgba(0,0,0,.35) 22%,
-      #000 34%,
-      #000 68%,
-      rgba(0,0,0,.65) 82%,
-      transparent 94%,
-      transparent 100%
-    );
+    /* Remove previous mask */
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
   }
 
   .hero-slide.active {
     opacity: 1 !important;
   }
 
+  /* LEFT — image fades naturally into black */
+  .hero::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 48%;
+
+    background: linear-gradient(
+      90deg,
+      #0b0b0b 0%,
+      #0b0b0b 68%,
+      rgba(11,11,11,.92) 78%,
+      rgba(11,11,11,.45) 88%,
+      rgba(11,11,11,0) 100%
+    );
+  }
+
+  /* RIGHT — image fades naturally into black */
+  .hero::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 34%;
+
+    background: linear-gradient(
+      90deg,
+      rgba(11,11,11,0) 0%,
+      rgba(11,11,11,.35) 18%,
+      rgba(11,11,11,.82) 48%,
+      #0b0b0b 82%,
+      #0b0b0b 100%
+    );
+  }
+
   .hero-shade {
     pointer-events: none !important;
   }
-}
-    bottom: 24px;
+
+  .hero-copy,
+  .hero-side,
+  .hero-count {
+    z-index: 4 !important;
   }
+}
+  
